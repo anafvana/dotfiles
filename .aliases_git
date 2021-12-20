@@ -1,0 +1,100 @@
+#!/bin/bash
+
+## Functions
+ 
+### Emoji-log functions
+function gcm(){
+	git commit -m "$*"
+}
+
+function gcnew(){
+	gcm "📦 NEW: $@"
+}
+
+function gcupg(){
+	gcm "🆙 UPGRADE: $@"
+}
+
+function gcimp() {
+	gcm "👌 IMPROVE: $@"
+}
+
+function gcmin(){
+	gcm "🤏 MINOR: $@"
+}
+
+function gcref(){
+	gcm "🔨 REFACTOR: $@"
+}
+
+function gcfix() {
+	gcm "🐛 FIX: $@"
+}
+
+function gcbug() {
+	gcfix "$@"
+}
+
+function gcrel() {
+	gcm "🚀 RELEASE: $@"
+}
+
+function gcdoc() {
+	gcm "📖 DOC: $@"
+}
+
+function gctst() {
+	gcm "✅ TEST: $@"
+}
+
+function gcmrg() {
+	gcm "🔀 MERGE: $@"
+}
+
+function gcrmv() {
+	gcm "❌ REMOVE: $@"
+}
+
+function gccln(){
+	gcm "🧹 CLEAN-UP: $@"
+}
+
+function ghelp(){
+	echo "
+		g = git
+		gs = git status
+		gl = git log --decorate --graph
+		ga = git add
+		gaa = git add -a
+		gc = git commit
+		gcm = git commit -m
+		gcnew = 📦 NEW
+		gcupg = 🆙 UPGRADE
+		gcimp = 👌 IMPROVE
+		gcmin = 🤏 MINOR
+		gcref = 🔨 REFACTOR
+		gcfix = 🐛 FIX
+		gcbug = 🐛 FIX
+		gcrel = 🚀 RELEASE
+		gcdoc = 📖 DOC
+		gctst = ✅ TEST
+		gcmrg = 🔀 MERGE
+		gcrmv = ❌ REMOVE
+		gccln = 🧹 CLEAN-UP
+		gpl = git pull
+		gp = git push
+	"
+}
+
+## Aliases
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gl='git log --decorate --graph'
+alias gchk='git chekout'
+alias gnb='git checkout -b'

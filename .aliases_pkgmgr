@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#function aptppa(){
+#	sudo add-apt-repository ppa:"$*"
+#}
+
+alias aptsn='apt search --names-only'
+alias apti='sudo apt install'
+alias aptr='sudo apt remove'
+alias aptup='sudo apt update; sudo apt upgrade -y'
