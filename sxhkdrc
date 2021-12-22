@@ -34,7 +34,7 @@ super + {_, shift + } @space
 
 # screenshot
 super + ctrl + p
-    scrot '/home/intarga/Pictures/%Y-%m-%d_$wx$h.png'
+    scrot '/home/a/Pictures/%Y-%m-%d_$wx$h.png'
 
 # screenshot to clipboard
 super + shift + p
@@ -46,7 +46,16 @@ XF86MonBrightness{Down,Up}
 
 # volume control
 XF86Audio{LowerVolume,RaiseVolume,Mute}
-    pamixer {-d 5, -i 5, -t}
+    amixer -D pulse sset Master {5%-, 5%+, 0%} ; \
+    notify-send -h string:x-dunst-stack-tag:volume "Volume" \
+    `amixer -D pulse get Master | grep -Eo -m 1 "[0-9]+%"`
+    #Arch
+    #pamixer {-d 5, -i 5, -t}
+
+XF86Audio{LowerVolume,RaiseVolume,Mute} + shift
+    amixer -D pulse sset Master {1%-, 1%+, 0%} ; \
+    notify-send -h string:x-dunst-stack-tag:volume "Volume" \
+    `amixer -D pulse get Master | grep -Eo -m 1 "[0-9]+%"`
 
 # media control
 XF86Audio{Play,Prev,Next}
