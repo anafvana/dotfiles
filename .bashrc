@@ -98,3 +98,4 @@ done
 
 # other
 alias v='nvim'
+alias tar='tar -xvf'
