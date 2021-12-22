@@ -3,17 +3,10 @@
 DOTFILES=$(echo `pwd` | sed "s/\/scripts//")
 SCRIPTS=$(echo `pwd`)
 
-# PACKAGES
-## Basic setup packages
-#sudo apt install bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty
-
-## Additional setup packages
-#sudo apt install insync tree silversearcher-ag
-
 # SETTINGS
 ## Brightness without sudo
-#sudo chown root:root /usr/bin/brightnesctl
-#sudo chmod 4775 /usr/bin/brightnessctl
+sudo chown root:root /usr/bin/brightnessctl
+sudo chmod 4775 /usr/bin/brightnessctl
 
 # SYMLINKS
 ## bashrc
@@ -24,7 +17,7 @@ ln -s $DOTFILES/.bashrc $HOME
 SYMLINKS=(
 	"bspwmrc" ".config/bspwm"
 	"sxhkdrc" ".config/sxhkd"
-	"nvim" ".config/nvim"
+	"nvim" ".config"
 )
 
 for (( i=0;i<${#SYMLINKS[@]};i++))
