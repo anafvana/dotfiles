@@ -10,7 +10,7 @@ sudo apt install bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
 
-sudo apt install git nvim tree silversearcher-ag insync
+sudo apt install git curl nvim tree silversearcher-ag insync
 
 chmod +x $SCRIPTS/setup.sh
 bash $SCRIPTS/setup.sh
