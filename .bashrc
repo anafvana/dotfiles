@@ -2,9 +2,25 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# fetch location of symlink targets
-DOTFILES=$(echo "`echo ~/\`readlink ~/.bashrc\` | sed \"s/.bashrc//\"`")
-SCRIPTS=$(echo "`echo ~/\`readlink ~/.bashrc\`/scripts | sed \"s/.bashrc//\"`")
+homeDirs=(".local/bin" "etc")
+for dir in ${homeDirs[@]}
+do
+	if [ ! -d $HOME/$dir ]; then
+    		mkdir $HOME/$dir
+	fi
+done
+
+export BINARIES="${HOME}/${homeDirs[0]}"
+export OTHER="${HOME}/${homeDirs[1]}"
+export PATH="${PATH}:${BINARIES}"
+export DOTFILES="${HOME}/.dotfiles"
+export SCRIPTS="${HOME}/.dotfiles/scripts"
+
+# If not running interactively, stop here
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -99,3 +115,7 @@ done
 # other
 alias v='nvim'
 alias tar='tar -xvf'
+
+# AUTOMATIC CHANGES #
+# changes made automatically by packages/programs
+. "$HOME/.cargo/env"

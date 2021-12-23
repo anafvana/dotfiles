@@ -1,7 +1,6 @@
 #!/bin/bash
 
-DOTFILES=$(echo `pwd` | sed "s/\/scripts//")
-SCRIPTS=$(echo `pwd`)
+dotfiles_temp=$(echo `pwd` | sed "s/\/scripts//")
 
 # SETTINGS
 ## Brightness without sudo
@@ -10,7 +9,9 @@ sudo chmod 4775 /usr/bin/brightnessctl
 
 # SYMLINKS
 ## bashrc
-ln -s $DOTFILES/.bashrc $HOME
+mv .bashrc .bashrc_old
+ln -s $dotfiles_temp/.bashrc $HOME
+source $HOME/.bashrc
 
 ## .config files
 # format: targetFile directory
@@ -36,3 +37,6 @@ done
 
 ## Touchpad config
 sudo ln -s $DOTFILES/xorg.conf.d/30-touchpad.conf /usr/share/X11/xorg.conf.d
+
+## eww config
+bash $SCRIPTS/eww.sh
