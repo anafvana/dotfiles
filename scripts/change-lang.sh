@@ -2,7 +2,7 @@
 DIR=$1
 
 LANG=`setxkbmap -print -verbose 7 | grep "layout" | sed -e "s/layout:     //"`
-langs=("us" "no" "br")
+langs=("br" "us" "no")
 langsLen=`expr ${#langs[@]} - 1`
 
 if [[ $DIR == "back" ]]; then
