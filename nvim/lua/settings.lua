@@ -5,6 +5,9 @@ function settings.setup()
 	-- indentation: tabs (not spaces)
 	local indent = 4
 
+	-- gui colours
+	o.termguicolors=true
+
 	--line numbering
 	w.number = true
 	w.relativenumber = true
@@ -26,6 +29,10 @@ function settings.setup()
 	-- autoformat: remove trailing whitespace on write
 	cmd([[autocmd BufWritePre * %s/\s\+$//e]])
 
+	-- colourise colour codes
+	cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :HexokinaseTurnOn]])
+	-- with Colorize
+	-- cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :ColorHighlight]])
 end
 
 return settings
