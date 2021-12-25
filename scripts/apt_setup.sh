@@ -13,23 +13,26 @@ fi
 
 # PACKAGES
 ## Basic setup packages
-sudo apt install -y bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty
+sudo apt install -y bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty feh
+
+### pywal
+sudo apt install -y python3.9 python3-pip imagemagick procps
+sudo pip3 install pywal
 
 ## Additional setup packages
-#neovim
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo apt install git curl tree silversearcher-ag
 
-#spotify
+### neovim
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo apt update
+sudo apt install -y neovim
+
+### spotify
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/spotify.gpg --import
 sudo chown _apt /etc/apt/trusted.gpg.d/spotify.gpg
+sudo apt install spotify-client
 
-sudo apt-get update
-
-sudo apt install git curl neovim tree silversearcher-ag spotify-client
-
-sudo apt update && sudo apt upgrade -y
-
-#insync
+### insync
 {
 	curl -o $HOME/insync.deb https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.6.1.50206-impishh_amd64.deb && sudo dpkg -i $HOME/insync.deb && rm $HOME/insync.deb
 } || {
@@ -46,6 +49,8 @@ sudo apt update && sudo apt upgrade -y
 	fi
 	echo "Continuing..."
 }
+
+sudo apt update && sudo apt upgrade -y
 
 # GENERAL SETUP (continue) #
 chmod +x $SCRIPTS/setup.sh

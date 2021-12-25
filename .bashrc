@@ -119,3 +119,7 @@ alias tar='tar -xvf'
 # AUTOMATIC CHANGES #
 # changes made automatically by packages/programs
 . "$HOME/.cargo/env"
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
