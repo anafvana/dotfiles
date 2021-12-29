@@ -29,4 +29,4 @@ else
     done
 fi
 
-bash $HOME/.dotfiles/scripts/notify-lang.sh
+bash $SCRIPTS/notify-lang.sh
