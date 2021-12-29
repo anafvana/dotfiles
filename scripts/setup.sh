@@ -50,16 +50,57 @@ then
 	fi
 fi
 
+# searching for variables and adding/replacing
+cntdf=$(grep "DOTFILES=" $HOMEFILES/.bashrc | wc -l)
+if [ $cntdf -gt 0 ]
+then
+	echo "Updating DOTFILES global variable"
+	sed -i "s|DOTFILES=.*|DOTFILES=${DOTFILES}|" $HOMEFILES/.bashrc
+else
+	echo "Creating DOTFILES global variable"
+	sed -i "1i export DOTFILES=${DOTFILES}" $HOMEFILES/.bashrc
+fi
 
-sed "s|var=.*|DOTFILES=${DOTFILES}|" $DOTFILES/.bashrc 
-sed "s|var=.*|HOMEFILES=${HOMEFILES}|" $DOTFILES/.bashrc
-sed "s|var=.*|SCRIPTS=${SCRIPTS}|" $DOTFILES/.bashrc 
-sed "s|var=.*|CONFIGFILES=${CONFIGFILES}|" $DOTFILES/.bashrc 
+cnthf=$(grep "HOMEFILES=" $HOMEFILES/.bashrc | wc -l)
+if [ $cnthf -gt 0 ]
+then
+	echo "Updating HOMEFILES global variable"
+	sed -i "s|HOMEFILES=.*|HOMEFILES=${HOMEFILES}|" $HOMEFILES/.bashrc
+else
+	echo "Creating HOMEFILES global variable"
+	sed -i "1i export HOMEFILES=${HOMEFILES}" $HOMEFILES/.bashrc
+fi
 
-# SETTINGS #
-## Brightness without sudo
-sudo chown root:root /usr/bin/brightnessctl
-sudo chmod 4775 /usr/bin/brightnessctl
+cntsc=$(grep "SCRIPTS=" $HOMEFILES/.bashrc| wc -l)
+if [ $cntsc -gt 0 ]
+then
+	echo "Updating SCRIPTS global variable"
+	sed -i "s|SCRIPTS=.*|SCRIPTS=${SCRIPTS}|" $HOMEFILES/.bashrc
+else
+	echo "Creating SCRIPTS global variable"
+	sed -i "1i export SCRIPTS=${SCRIPTS}" $HOMEFILES/.bashrc
+fi
+
+cntcf=$(grep "CONFIGFILES=" $HOMEFILES/.bashrc | wc -l)
+if [ $cntcf -gt 0 ]
+then
+	echo "Updating CONFIGFILES global variable"
+	sed -i "s|CONFIGFILES=.*|CONFIGFILES=${CONFIGFILES}|" $HOMEFILES/.bashrc
+else
+	echo "Creating CONFIGFILES global variable"
+	sed -i "1i export CONFIGFILES=${CONFIGFILES}" $HOMEFILES/.bashrc
+fi
+
+# DISTRO-DEPENDANT INSTALLATIONS #
+pkg=$(bash $SCRIPTS/id_pkgmgr.sh)
+case $pkg in
+	apt)
+		bash $SCRIPTS/apt_setup.sh
+		;;
+	*)
+		echo "No setup for package manager: $pkg"
+		;;
+esac
 
 # SYMLINKS #
 ## bashrc
@@ -68,9 +109,7 @@ then
 	mv .bashrc .bashrc_old
 fi
 
-#TODO Correct $DOTFILES and $SCRIPTS if not default
-
-ln -s $DOTFILES/home/.bashrc --target-directory=$HOME
+ln -s $HOMEFILES/.bashrc --target-directory=$HOME
 source $HOME/.bashrc
 
 ## .config files
@@ -105,7 +144,11 @@ bash $SCRIPTS/eww.sh
 ## golang
 bash $SCRIPTS/go.sh
 
+# SETTINGS #
+## Brightness without sudo
+sudo chown root:root /usr/bin/brightnessctl
+sudo chmod 4775 /usr/bin/brightnessctl
+
 echo
 echo "Setup done."
 echo "Go to $HOME/.bashrc and check that all exported paths are correct."
-exit 0

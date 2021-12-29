@@ -1,10 +1,16 @@
 #!/bin/bash
 
-function aptppa(){
-	sudo add-apt-repository ppa:"$*"
+function dnfrepo(){
+	sudo config-manager --add-repo "$*"
 }
 
-alias aptsn='apt search --names-only'
-alias apti='sudo apt install'
-alias aptr='sudo apt remove; sudo apt autoremove -y'
-alias aptup='sudo apt update; sudo apt upgrade -y; sudo apt autoremove'
+function dnfr(){
+	sudo dnf remove "$*"; sudo apt autoremove -y
+}
+
+alias dnfs='dnf search'
+alias dnfi='sudo dnf install'
+alias dnfup='sudo apt upgrade -y; sudo apt autoremove'
+alias dnfl='dnf list --installed'
+alias dnfhelp='xdg;open https://dnf.readthedocs.io/en/latest/command_ref.html'
+alias pkgmgr='echo "dnf"'
