@@ -14,6 +14,7 @@ export BINARIES="${HOME}/${homeDirs[0]}"
 export OTHER="${HOME}/${homeDirs[1]}"
 export PATH="${PATH}:${BINARIES}"
 export DOTFILES="${HOME}/.dotfiles"
+export CONFIGFILES="${HOME}/.dotfiles/.config"
 export SCRIPTS="${HOME}/.dotfiles/scripts"
 
 # If not running interactively, stop here
@@ -106,9 +107,9 @@ ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
 
 for file in ${ALIAS_FILES[@]}
 do
-	if [ -f $DOTFILES/$file ]; then
-    		. $DOTFILES/$file
-    		source $DOTFILES/$file
+	if [ -f $DOTFILES/home/$file ]; then
+    		. $DOTFILES/home/$file
+    		source $DOTFILES/home/$file
 	fi
 done
 
@@ -119,7 +120,4 @@ alias tar='tar -xvf'
 # AUTOMATIC CHANGES #
 # changes made automatically by packages/programs
 . "$HOME/.cargo/env"
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/go/bin

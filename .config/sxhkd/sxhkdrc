@@ -34,7 +34,7 @@ super + {_, shift + } @space
 
 # screenshot
 super + ctrl + p
-    scrot '/home/a/Pictures/%Y-%m-%d_$wx$h.png'
+    scrot "$HOME/Pictures/%Y-%m-%d_$wx$h.png"
 
 # screenshot to clipboard
 super + shift + p

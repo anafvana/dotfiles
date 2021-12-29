@@ -15,7 +15,6 @@ return require('packer').startup(function(use)
 	use 'KabbAmine/vCoolor.vim'
 	-- use 'chrisbra/colorizer'
 	use {'rrethy/vim-hexokinase', run = 'cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'}
-	-- use 'rrethy/vim-hexokinase'
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
