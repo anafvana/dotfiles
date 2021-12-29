@@ -29,8 +29,7 @@ do
 			break
 			;;
 		*)
-			echo "Could not identify package manager"
-			return
+			PKGMGR="FAILED TO IDENTIFY"
 			;;
 	esac
 done

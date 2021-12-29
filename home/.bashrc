@@ -13,7 +13,10 @@ done
 export BINARIES="${HOME}/${homeDirs[0]}"
 export OTHER="${HOME}/${homeDirs[1]}"
 export PATH="${PATH}:${BINARIES}"
+
+# .dotfiles directories (autosetup files)
 export DOTFILES="${HOME}/.dotfiles"
+export HOMEFILES="${HOME}/.dotfiles/home"
 export CONFIGFILES="${HOME}/.dotfiles/.config"
 export SCRIPTS="${HOME}/.dotfiles/scripts"
 
@@ -107,9 +110,9 @@ ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
 
 for file in ${ALIAS_FILES[@]}
 do
-	if [ -f $DOTFILES/home/$file ]; then
-    		. $DOTFILES/home/$file
-    		source $DOTFILES/home/$file
+	if [ -f $HOMEFILES/$file ]; then
+    		. $HOMEFILES/$file
+    		source $HOMEFILES/$file
 	fi
 done
 

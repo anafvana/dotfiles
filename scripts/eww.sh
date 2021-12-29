@@ -9,7 +9,7 @@ if [ "$#" -eq 1 ]
 then
 	PKGMGR=$1
 else
-	PKGMGR=$(chmod +x $SCRIPTS/id_pkgmgr.sh ; $SCRIPTS/id_pkgmgr.sh)
+	PKGMGR=$(chmod +x $SCRIPTS/id_pkgmgr.sh ; bash $SCRIPTS/id_pkgmgr.sh)
 fi
 
 # core installation task
