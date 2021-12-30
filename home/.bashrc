@@ -27,7 +27,7 @@ shopt -s autocd
 #Run programs
 
 # User specific aliases and functions
- 
+
 ## Functions
 
 _complete_ssh_hosts (){
@@ -47,7 +47,7 @@ _complete_ssh_hosts (){
     return 0
 }
 complete -F _complete_ssh_hosts ssh
- 
+
 ### Connectivity functions
 function db(){
 	output=`ps aux | grep "30000:thales:3306"`
@@ -84,3 +84,7 @@ alias v='nvim'
 alias opoint="cd $HOME/Insync/anafvana@gmail.com/Google\ Drive/Opoint"
 alias .bashrc="nvim $HOME/.bashrc"
 alias sourch="source $HOME/.bashrc"
+
+# AUTOMATICALLY ADDED #
+. "$HOME/.cargo/env"
+export PATH=$PATH:/usr/local/go/bin
