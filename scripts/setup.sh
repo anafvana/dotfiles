@@ -97,6 +97,9 @@ case $pkg in
 	apt)
 		bash $SCRIPTS/apt_setup.sh
 		;;
+	dnf)
+		bash $SCRIPTS/dnf_setup.sh
+		;;
 	*)
 		echo "No setup for package manager: $pkg"
 		;;
