@@ -71,7 +71,7 @@ function ghelp(){
 		gpl = git pull
 		gf = git fetch
 		gl = git log --decorate --graph
-		gcco = git chekout
+		gco = git chekout
 		gnb = git checkout -b
 		grb = git branch -d
 		grbf = git branch -D (force delete)
@@ -102,7 +102,7 @@ alias gp='git push'
 alias gpl='git pull'
 alias gf='git fetch'
 alias gl='git log --decorate --graph'
-alias gcco='git chekout'
+alias gco='git chekout'
 alias gnb='git checkout -b'
 alias grb='git branch -d'
 alias grbf='git branch -D'
