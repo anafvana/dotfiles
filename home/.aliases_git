@@ -63,11 +63,18 @@ function ghelp(){
 	echo "
 		g = git
 		gs = git status
-		gl = git log --decorate --graph
 		ga = git add
-		gaa = git add -a
+		gaa = git add --all
 		gc = git commit
 		gcm = git commit -m
+		gp = git push
+		gpl = git pull
+		gf = git fetch
+		gl = git log --decorate --graph
+		gcco = git chekout
+		gnb = git checkout -b
+		grb = git branch -d
+		grbf = git branch -D (force delete)
 		gcnew = 📦 NEW
 		gcupg = 🆙 UPGRADE
 		gcimp = 👌 IMPROVE
@@ -81,8 +88,6 @@ function ghelp(){
 		gcmrg = 🔀 MERGE
 		gcrmv = ❌ REMOVE
 		gccln = 🧹 CLEAN-UP
-		gpl = git pull
-		gp = git push
 	"
 }
 
@@ -95,6 +100,9 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gp='git push'
 alias gpl='git pull'
+alias gf='git fetch'
 alias gl='git log --decorate --graph'
-alias gchk='git chekout'
+alias gcco='git chekout'
 alias gnb='git checkout -b'
+alias grb='git branch -d'
+alias grbf='git branch -D'
