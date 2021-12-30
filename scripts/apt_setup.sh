@@ -54,7 +54,3 @@ sudo apt install spotify-client
 }
 
 sudo apt update && sudo apt upgrade -y
-
-# GENERAL SETUP (continue) #
-chmod +x $SCRIPTS/setup.sh
-bash $SCRIPTS/setup.sh
