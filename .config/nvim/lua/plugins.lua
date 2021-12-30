@@ -16,6 +16,10 @@ return require('packer').startup(function(use)
 	-- use 'chrisbra/colorizer'
 	use {'rrethy/vim-hexokinase', run = 'cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'}
 
+	-- WORK PLUGINS --
+	-- database connections
+	use 'tpope/vim-dadbod'
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
