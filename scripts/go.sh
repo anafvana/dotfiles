@@ -1,6 +1,8 @@
 url=https://go.dev
 
 #get source code of download page
+echo "Starting Go installation"
+
 curl -o $HOME/temp.txt $url/dl/
 
 #retrieve the first link for linux amd64 (recommended download)
@@ -37,11 +39,12 @@ then
 	fi
 
 	url=$(sed 's/^.*\(https.*tar\.gz\).*$/\1/' $HOME/temp.txt)
+	echo $url
 
 	#download actual file
 	{
 		curl -o $HOME/go.tar.gz $url && \
-		sudo tar -C /usr/local -xvf go.tar.gz && \
+		sudo tar -C /usr/local -xvf $HOME/go.tar.gz && \
 		echo 'export PATH=$PATH:/usr/local/go/bin' >> $HOME/.bashrc && \
 		source $HOME/.bashrc && \
 		deletebackup
