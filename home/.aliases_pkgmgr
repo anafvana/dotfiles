@@ -5,12 +5,12 @@ function dnfrepo(){
 }
 
 function dnfr(){
-	sudo dnf remove "$*"; sudo apt autoremove -y
+	sudo dnf remove "$*"; sudo dnf autoremove -y
 }
 
 alias dnfs='dnf search'
 alias dnfi='sudo dnf install'
-alias dnfup='sudo apt upgrade -y; sudo apt autoremove'
+alias dnfup='sudo dnf upgrade -y; sudo dnf autoremove'
 alias dnfl='dnf list --installed'
 alias dnfhelp='xdg;open https://dnf.readthedocs.io/en/latest/command_ref.html'
 alias pkgmgr='echo "dnf"'
