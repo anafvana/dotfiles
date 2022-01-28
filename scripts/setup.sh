@@ -107,7 +107,7 @@ esac
 
 # SYMLINKS #
 ## bashrc
-if [ -f $HOME/.bashrc ]
+if [ -f $HOME/.bashrc ]  || [ -L $HOME/.bashrc ]
 then
 	mv .bashrc .bashrc_old
 fi
@@ -116,25 +116,36 @@ ln -s $HOMEFILES/.bashrc --target-directory=$HOME
 source $HOME/.bashrc
 
 ## .config files
-# format: targetFile directory
+# format: "target" "subdirectory_in_.config"
 SYMLINKS=(
-	"bspwm" ".config"
-	"sxhkd" ".config"
-	"nvim" ".config"
+	"bspwm" ""
+	"sxhkd" ""
+	"nvim" ""
 )
 
 for (( i=0;i<${#SYMLINKS[@]};i++))
 do
 	TARGET=$CONFIGFILES/${SYMLINKS[$i]}
-	i=$(($i+1))
-	DIRECT=$HOME/${SYMLINKS[$i]}
+	j=$(($i+1)) #fetch .config sublocation
+	DIRECT=$HOME/.config/${SYMLINKS[$j]}
 
+	#check if .config exists
 	chmod +x "$TARGET"
 	if [[ ! -d "$DIRECT" ]]
 	then
 		mkdir -p "$DIRECT"
 	fi
+
+	#check if symlink already exists (and back it up)
+	if [ -d $DIRECT/${SYMLINKS[$i]} ] || [ -L $DIRECT/${SYMLINKS[$i]} ]
+	then
+		echo "A symlink for ${SYMLINKS[$i]} was found. Backing it up to ${SYMLINKS[$i]}_old"
+		mv $DIRECT/${SYMLINKS[$i]} $DIRECT/${SYMLINKS[$i]}_old
+	fi
 	ln -s "$TARGET" "$DIRECT"
+
+	#skip next i (.config sublocation)
+	i=$(($i+1))
 done
 
 ## Touchpad config
