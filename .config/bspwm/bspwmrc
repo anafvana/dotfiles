@@ -11,6 +11,7 @@ bspc config focused_border_color "#f8b56a"
 killall sxhkd ; sxhkd &
 killall dunst ; dunst &
 killall insync ; insync start &
+killall redshift ; redshift -l 59.9:10.7 -t 5700:3600 -g 0.8 -m randr -r &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 

@@ -16,7 +16,7 @@ fi
 
 # PACKAGES
 ## Basic setup packages
-sudo dnf install -y bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty feh
+sudo dnf install -y bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty feh redshift
 
 ### pywal
 sudo dnf install -y python3.9 python3-pip.noarch ImageMagick procps

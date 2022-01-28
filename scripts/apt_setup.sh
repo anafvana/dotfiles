@@ -16,7 +16,7 @@ fi
 
 # PACKAGES
 ## Basic setup packages
-sudo apt install -y bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty feh
+sudo apt install -y bspwm sxhkd dunst brightnessctl alsa-utils acpi scrot alacritty feh redshift
 
 ### pywal
 sudo apt install -y python3.9 python3-pip imagemagick procps
@@ -53,4 +53,6 @@ sudo apt install spotify-client
 	echo "Continuing..."
 }
 
+
 sudo apt update && sudo apt upgrade -y
+echo "Done"
