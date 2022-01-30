@@ -149,6 +149,12 @@ do
 done
 
 ## Touchpad config
+tpconf="30-touchpad.conf"
+if [ -L /usr/share/X11/xorg.conf.d/${tpconf} ]
+then
+	echo "A symlink for ${tpconf} was found. Backing it up to ${tpconf}_old"
+	sudo mv /usr/share/X11/xorg.conf.d/${tpconf} /usr/share/X11/xorg.conf.d/${tpconf}_old
+fi
 sudo ln -s $DOTFILES/other/xorg.conf.d/30-touchpad.conf /usr/share/X11/xorg.conf.d
 
 # INSTALLATIONS #
