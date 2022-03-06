@@ -164,6 +164,9 @@ bash "$SCRIPTS/eww.sh"
 ## golang
 bash "$SCRIPTS/go.sh"
 
+## nvim plugins
+bash "$SCRIPTS/nvim-setup.sh"
+
 # SETTINGS #
 ## Brightness without sudo
 sudo chown root:root /usr/bin/brightnessctl

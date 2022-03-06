@@ -12,6 +12,14 @@ function keys.setup()
 
 	-- clear highlights
 	map('n', '<Leader>x', ':noh<CR>', n)
+
+	-- LSP mappings
+	-- LSP: diagnostic
+	local opts = { noremap=true, silent=true }
+	map('n', '<Leader>f', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+	map('n', '<Leader>N', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+	map('n', '<Leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+	map('n', '<Leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 end
 
 return keys

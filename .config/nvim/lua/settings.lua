@@ -33,6 +33,28 @@ function settings.setup()
 	cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :HexokinaseTurnOn]])
 	-- with Colorize
 	-- cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :ColorHighlight]])
+
+	require "lspconfig".efm.setup {
+	    init_options = {documentFormatting = true},
+	    settings = {
+		rootMarkers = {".git/"},
+		languages = {
+		    -- lua = {
+			-- {formatCommand = "lua-format -i", formatStdin = true}
+		    -- }
+		    sh = {
+			    {lintCommand = 'shellcheck -f gcc -x',
+			    lintSource = 'shellcheck',
+			    lintFormats = {
+				    '%f:%l:%c: %trror: %m',
+				    '%f:%l:%c: %tarning: %m',
+				    '%f:%l:%c: %tote: %m'
+				    }
+			    }
+		    }
+	    }
+    }
+}
 end
 
 return settings
