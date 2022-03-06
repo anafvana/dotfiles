@@ -5,12 +5,12 @@ then
 	SCRIPTS=$HOME/.dotfiles/scripts
 fi
 
-read -p "Your scripts folder is defined as \"$SCRIPTS\". Is that correct? [Y]es [n]o: " answer
+read -pr "Your scripts folder is defined as \"$SCRIPTS\". Is that correct? [Y]es [n]o: " answer
 answer=$(echo "$answer" | awk '{print tolower($0)}')
 
 if [[ $answer == "n" || $answer == "no" ]]
 then
-	read -p "What is the correct path? " path
+	read -pr "What is the correct path? " path
 	SCRIPTS=$path
 fi
 
@@ -37,17 +37,17 @@ sudo apt install spotify-client
 
 ### insync
 {
-	curl -o $HOME/insync.deb https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.6.1.50206-impishh_amd64.deb && sudo dpkg -i $HOME/insync.deb && rm $HOME/insync.deb
+	curl -o "$HOME/insync.deb" https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.6.1.50206-impishh_amd64.deb && sudo dpkg -i "$HOME/insync.deb" && rm "$HOME/insync.deb"
 } || {
 	echo "Insync installation failed"
 
-	read -p "Would you like to remove downloaded files? [Y]es [n]o: " answer
+	read -pr "Would you like to remove downloaded files? [Y]es [n]o: " answer
 	answer=$(echo "$answer" | awk '{print tolower($0)}')
 	if [[ $answer == "n" || $answer == "no" ]]
 	then
 		echo "Check $HOME/insync.deb for downloaded Insync file"
 	else
-		rm $HOME/insync.deb
+		rm "$HOME/insync.deb"
 		echo "Files removed."
 	fi
 	echo "Continuing..."
