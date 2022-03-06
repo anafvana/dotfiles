@@ -20,6 +20,18 @@ export HOMEFILES="${HOME}/.dotfiles/home"
 export CONFIGFILES="${HOME}/.dotfiles/.config"
 export SCRIPTS="${HOME}/.dotfiles/scripts"
 
+# clean PATH duplicates
+PATH=$(echo $PATH | tr ':' '\n' | perl -lne 'chomp; print unless $k{$_}; $k{$_}++' | tr '\n' ':' | sed 's/:$//')
+
+# conditionally add directories to PATH
+addToPath() {
+	dir="$1"
+	if [[ ! $PATH =~ "$dir" ]]
+	then
+		export PATH=$PATH:$dir
+	fi
+}
+
 # If not running interactively, stop here
 case $- in
     *i*) ;;
@@ -123,4 +135,6 @@ alias tar='tar -xvf'
 # AUTOMATIC CHANGES #
 # changes made automatically by packages/programs
 . "$HOME/.cargo/env"
-export PATH=$PATH:/usr/local/go/bin
+addToPath '/usr/local/go/bin'
+addToPath '/snap/bin'
+addToPath '/home/a/go/bin'
