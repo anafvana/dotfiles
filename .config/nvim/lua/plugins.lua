@@ -16,6 +16,9 @@ return require('packer').startup(function(use)
 	-- autoclose brackets, quotes, etc
 	use 'tmsvg/pear-tree'
 
+	-- move lines/blocks of code
+	use 'booperlv/nvim-gomove'
+
 	-- colour picking and displaying
 	use 'KabbAmine/vCoolor.vim'
 	-- use 'chrisbra/colorizer'
