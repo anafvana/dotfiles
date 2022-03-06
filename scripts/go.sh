@@ -45,7 +45,7 @@ then
 	{
 		curl -o $HOME/go.tar.gz $url && \
 		sudo tar -C /usr/local -xvf $HOME/go.tar.gz && \
-		echo 'export PATH=$PATH:/usr/local/go/bin' >> $HOME/.bashrc && \
+		echo "addToPath '/usr/local/go/bin'" >> $HOME/.bashrc && \
 		source $HOME/.bashrc && \
 		deletebackup
 	} || {
