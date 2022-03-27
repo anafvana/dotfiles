@@ -3,15 +3,15 @@
 ## Functions
  
 ### Emoji-log functions
-function gcm(){
+function gcm() {
 	git commit -m "$*"
 }
 
-function gcnew(){
+function gcnew() {
 	gcm "📦 NEW: $@"
 }
 
-function gcupg(){
+function gcupg() {
 	gcm "🆙 UPGRADE: $@"
 }
 
@@ -19,11 +19,11 @@ function gcimp() {
 	gcm "👌 IMPROVE: $@"
 }
 
-function gcmin(){
+function gcmin() {
 	gcm "🤏 MINOR: $@"
 }
 
-function gcref(){
+function gcref() {
 	gcm "🔨 REFACTOR: $@"
 }
 
@@ -67,7 +67,7 @@ function grr() {
 	git remote remove "$1"
 }
 
-function ghelp(){
+function ghelp() {
 	echo "
 		g = git
 		gs = git status
