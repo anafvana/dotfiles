@@ -118,3 +118,4 @@ alias gnb='git checkout -b'
 alias gdb='git branch -d'
 alias gdbf='git branch -D'
 alias gr='git remote -v'
+alias gh=ghelp
