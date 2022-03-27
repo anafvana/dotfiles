@@ -72,7 +72,7 @@ function ghelp() {
 		g = git
 		gs = git status
 		ga = git add
-		gaa = git add --all
+		gaa = git add --all --verbose
 		gc = git commit
 		gcm = git commit -m
 		gp = git push
@@ -106,7 +106,7 @@ function ghelp() {
 alias g='git'
 alias gs='git status'
 alias ga='git add'
-alias gaa='git add --all'
+alias gaa='git add --all --verbose'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gd='git diff'
