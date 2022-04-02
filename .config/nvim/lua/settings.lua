@@ -4,6 +4,10 @@ local settings = {}
 function settings.setup()
 	-- indentation: tabs (not spaces)
 	local indent = 4
+	b.shiftwidth = indent
+	o.shiftwidth = indent
+	b.tabstop = indent
+	o.tabstop = indent
 
 	-- gui colours
 	o.termguicolors=true
