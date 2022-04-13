@@ -70,7 +70,7 @@ function grr() {
 function ghelp() {
 	echo "
 		g = git
-		gs = git status
+		gs = git status -s
 		ga = git add
 		gaa = git add --all --verbose
 		gap = git add --patch
@@ -105,7 +105,7 @@ function ghelp() {
 
 ## Aliases
 alias g='git'
-alias gs='git status'
+alias gs='git status -s'
 alias ga='git add'
 alias gaa='git add --all --verbose'
 alias gap='git add --patch' # interactive add that let's you add "hunks" of files (or split into smaller hunks) if you accidently made many unrelated changes that you want to keep in each of their own commits
