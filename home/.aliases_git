@@ -3,15 +3,15 @@
 ## Functions
  
 ### Emoji-log functions
-function gcm(){
+function gcm() {
 	git commit -m "$*"
 }
 
-function gcnew(){
+function gcnew() {
 	gcm "📦 NEW: $@"
 }
 
-function gcupg(){
+function gcupg() {
 	gcm "🆙 UPGRADE: $@"
 }
 
@@ -19,11 +19,11 @@ function gcimp() {
 	gcm "👌 IMPROVE: $@"
 }
 
-function gcmin(){
+function gcmin() {
 	gcm "🤏 MINOR: $@"
 }
 
-function gcref(){
+function gcref() {
 	gcm "🔨 REFACTOR: $@"
 }
 
@@ -55,16 +55,25 @@ function gcrmv() {
 	gcm "❌ REMOVE: $@"
 }
 
-function gccln(){
+function gccln() {
 	gcm "🧹 CLEAN-UP: $@"
 }
 
-function ghelp(){
+function gra() {
+	git remote add "$1" "$2"
+}
+
+function grr() {
+	git remote remove "$1"
+}
+
+function ghelp() {
 	echo "
 		g = git
-		gs = git status
+		gs = git status -s
 		ga = git add
-		gaa = git add --all
+		gaa = git add --all --verbose
+		gap = git add --patch
 		gc = git commit
 		gcm = git commit -m
 		gp = git push
@@ -73,8 +82,11 @@ function ghelp(){
 		gl = git log --decorate --graph
 		gco = git chekout
 		gnb = git checkout -b
-		grb = git branch -d
-		grbf = git branch -D (force delete)
+		gbd = git branch -d
+		gbdf = git branch -D (force delete)
+		gr = git remote -v
+		gra = git remote add <remote> <url>
+		grr = git remote remove <remote>
 		gcnew = 📦 NEW
 		gcupg = 🆙 UPGRADE
 		gcimp = 👌 IMPROVE
@@ -93,16 +105,21 @@ function ghelp(){
 
 ## Aliases
 alias g='git'
-alias gs='git status'
+alias gs='git status -s'
 alias ga='git add'
-alias gaa='git add --all'
+alias gaa='git add --all --verbose'
+alias gap='git add --patch' # interactive add that let's you add "hunks" of files (or split into smaller hunks) if you accidently made many unrelated changes that you want to keep in each of their own commits
 alias gc='git commit'
 alias gcm='git commit -m'
+alias gd='git diff'
 alias gp='git push'
 alias gpl='git pull'
 alias gf='git fetch'
 alias gl='git log --decorate --graph'
-alias gco='git chekout'
+alias glo='git log --oneline --graph'
+alias gco='git checkout'
 alias gnb='git checkout -b'
-alias grb='git branch -d'
-alias grbf='git branch -D'
+alias gbd='git branch -d'
+alias gbdf='git branch -D'
+alias gr='git remote -v'
+alias gh=ghelp
