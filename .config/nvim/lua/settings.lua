@@ -1,4 +1,4 @@
-local cmd, o, b, w = vim.api.nvim_command, vim.o, vim.bo, vim.wo
+local cmd, au, o, b, w = vim.api.nvim_command, vim.api.nvim_create_autocmd, vim.o, vim.bo, vim.wo
 local settings = {}
 
 function settings.setup()
@@ -34,9 +34,13 @@ function settings.setup()
 	cmd([[autocmd BufWritePre * %s/\s\+$//e]])
 
 	-- colourise colour codes
-	cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :HexokinaseTurnOn]])
+	cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json,*.tex,*.cls :HexokinaseTurnOn]])
 	-- with Colorize
 	-- cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :ColorHighlight]])
+	au("BufWritePost", {
+        pattern = "*.tex,*.cls",
+        command = "!pdflatex main.tex"
+    })
 
 	require "lspconfig".efm.setup {
 		init_options = {documentFormatting = true},
