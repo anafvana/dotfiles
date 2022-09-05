@@ -1,7 +1,9 @@
 #!/bin/bash
 
+export GIT_AUTHOR_NAME='Ana'
+
 ## Functions
- 
+
 ### Emoji-log functions
 function gcm(){
 	git commit -m "$*"
