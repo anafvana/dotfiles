@@ -53,6 +53,10 @@ function gcmrg() {
 	gcm "🔀 MERGE: $@"
 }
 
+function gcrwd() {
+	gcm "⏪ REWIND: $@"
+}
+
 function gcrmv() {
 	gcm "❌ REMOVE: $@"
 }
@@ -88,6 +92,7 @@ function ghelp(){
 		gcdoc = 📖 DOC
 		gctst = ✅ TEST
 		gcmrg = 🔀 MERGE
+		gcrwd = ⏪ REWIND
 		gcrmv = ❌ REMOVE
 		gccln = 🧹 CLEAN-UP
 	"
