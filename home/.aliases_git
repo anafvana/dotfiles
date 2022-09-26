@@ -1,7 +1,9 @@
 #!/bin/bash
 
+export GIT_AUTHOR_NAME='Ana'
+
 ## Functions
- 
+
 ### Emoji-log functions
 function gcm(){
 	git commit -m "$*"
@@ -51,6 +53,10 @@ function gcmrg() {
 	gcm "🔀 MERGE: $@"
 }
 
+function gcrwd() {
+	gcm "⏪ REWIND: $@"
+}
+
 function gcrmv() {
 	gcm "❌ REMOVE: $@"
 }
@@ -86,6 +92,7 @@ function ghelp(){
 		gcdoc = 📖 DOC
 		gctst = ✅ TEST
 		gcmrg = 🔀 MERGE
+		gcrwd = ⏪ REWIND
 		gcrmv = ❌ REMOVE
 		gccln = 🧹 CLEAN-UP
 	"
