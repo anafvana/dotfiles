@@ -7,6 +7,10 @@ function gcm() {
   git commit -m "$*"
 }
 
+function gca() {
+  git commit --amend --no-edit
+}
+
 function gcnew() {
   gcm "📦 NEW: $@"
 }
@@ -99,6 +103,9 @@ function ghelp() {
     ====================
     gc    = git commit
     gcm   = git commit -m
+    gca   = git commit --amend --no-edit (amend last commit, keep message)
+
+
     gcnew = 📦 NEW
     gcupg = 🆙 UPGRADE
     gcimp = 👌 IMPROVE
