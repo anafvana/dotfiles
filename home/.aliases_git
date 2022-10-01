@@ -101,10 +101,10 @@ function ghelp() {
     
     COMMIT MESSAGES
     ====================
+
     gc    = git commit
     gcm   = git commit -m
     gca   = git commit --amend --no-edit (amend last commit, keep message)
-
 
     gcnew = 📦 NEW
     gcupg = 🆙 UPGRADE
