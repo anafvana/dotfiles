@@ -78,6 +78,7 @@ function ghelp() {
     g     = git
     gd    = git diff
     gs    = git status -s
+    gls   = git ls-files
 
     ga    = git add
     gaa   = git add --all --verbose
@@ -126,6 +127,7 @@ function ghelp() {
 alias g='git'
 alias gd='git diff'
 alias gs='git status -s'
+alias gls='git ls-files'
 
 alias ga='git add'
 alias gaa='git add --all --verbose'
