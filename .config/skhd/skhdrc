@@ -1,4 +1,4 @@
-#SKHD STUFF
+	#SKHD STUFF
 
 # finding key codes: $ skhd --observe
 
@@ -8,14 +8,14 @@
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 ## Close active application
-cmd - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+# cmd - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
 # test a command
 # lshift - x : terminal-notifier -message "lshift - x"
 #lshift - x : terminal-notifier -message "$(yabai -m query --windows --window | jq -re ".id")"
 
 ## open terminal
-cmd - r : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - t : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
 ## open terminal
 cmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
