@@ -93,8 +93,7 @@ alias v='nvim'
 alias tar='tar -xvf'
 alias ll='ls -l'
 alias ll='ls -la'
-alias psql='psql -h localhost -d hyttegruppen -U hgeier -W'
-alias mongod='nohup mongod --dbpath "/opt/homebrew/var/mongodb"  &>/dev/null &'
+alias psql='psql -h localhost -d postgres -U postgres -W'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
 
 # AUTOMATIC CHANGES #
@@ -102,5 +101,6 @@ alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -
 addToPath '/usr/local/go/bin'
 addToPath '$HOME/etc'
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
+addToPath '/opt/homebrew/anaconda3/bin'
 [ -f "/Users/a/.ghcup/env" ] && source "/Users/a/.ghcup/env" # ghcup-envaddToPath /Users/a/go/bin
 
