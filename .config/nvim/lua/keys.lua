@@ -6,6 +6,7 @@ local keys = {}
 
 function keys.setup()
 	g.mapleader = " "
+	g.maplocalleader = ","
 
 	-- autocomplete find & replace
 	map('n', 'S', ':%s//gc<Left><Left><Left>', n)

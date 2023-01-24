@@ -10,8 +10,12 @@ return require('packer').startup(function(use)
 	-- packer itself
 	use 'wbthomason/packer.nvim'
 
-  	-- lsp
-	use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
+	-- lsp
+	use {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		'neovim/nvim-lspconfig', -- Collection of configurations for the built-in LSP client
+	}
 
 	-- autoclose brackets, quotes, etc
 	use 'tmsvg/pear-tree'
@@ -23,6 +27,29 @@ return require('packer').startup(function(use)
 	use 'KabbAmine/vCoolor.vim'
 	-- use 'chrisbra/colorizer'
 	use {'rrethy/vim-hexokinase', run = 'cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'}
+
+	-- brace manager for LISPs
+	use 'intarga/embrace.nvim'
+
+	-- Racket
+	use 'benknoble/vim-racket'
+
+	-- lisp repl integration
+    use {
+        'Olical/conjure',
+        config = function()
+            vim.g['conjure#log#hud#anchor'] = "SE"
+            vim.g['conjure#log#hud#border'] = "none"
+            vim.g['conjure#eval#inline#prefix'] = "-> "
+            vim.g['conjure#log#hud#width'] = 1.0
+            vim.g['conjure#log#hud#enabled'] = false
+            vim.g['conjure#mapping#eval_current_form'] = "f"
+            vim.g['conjure#mapping#eval_comment_current_form'] = "c"
+            vim.g['conjure#mapping#eval_word'] = "wf"
+            vim.g['conjure#mapping#eval_comment_word'] = "wc"
+        end
+        -- ft = 'scheme'
+    }
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
