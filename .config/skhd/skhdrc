@@ -5,7 +5,7 @@
 ## HYPER == SHIFT + CMD + ALT + OPTION
 
 ## Quickly restart the yabai launch agent
-ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"; brew services restart skhd
 
 ## Close active application
 cmd - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
@@ -15,16 +15,16 @@ cmd - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") 
 #lshift - x : terminal-notifier -message "$(yabai -m query --windows --window | jq -re ".id")"
 
 ## open terminal
-cmd - r : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - t : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
-## open terminal
-cmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
+## open browser
+cmd + ctrl - b  : /Applications/Firefox.app/Contents/MacOS/firefox
 
 ## swap window
-cmd + shift - 0x7C : yabai -m window --swap west # 0x7C is ->
-cmd + shift - 0x7D : yabai -m window --swap south # 0x7D is down
-cmd + shift - 0x7E : yabai -m window --swap north # 0x7E is up
-cmd + shift - 0x7B : yabai -m window --swap east # 0x7B is <-
+cmd + shift - right : yabai -m window --swap west # 0x7C is ->
+cmd + shift - down : yabai -m window --swap south # 0x7D is down
+cmd + shift - up : yabai -m window --swap north # 0x7E is up
+cmd + shift - left : yabai -m window --swap east # 0x7B is <-
 
 ## send window to monitor and follow focus
 #hyper - u : /Users/jesseskelton/CustomScripts/SwitcSpaces/moveWindowLeftAndFollowFocus.sh
@@ -132,18 +132,23 @@ cmd - m : yabai -m window --toggle zoom-fullscreen
 #cmd + alt - w : yabai -m space --destroy
 
 ## fast focus desktop
-#cmd + alt - x : yabai -m space --focus last
-#cmd + alt - z : yabai -m space --focus prev
-#cmd + alt - c : yabai -m space --focus next
-#cmd + alt - 1 : yabai -m space --focus 1
-#cmd + alt - 2 : yabai -m space --focus 2
-#cmd + alt - 3 : yabai -m space --focus 3
-#cmd + alt - 4 : yabai -m space --focus 4
-#cmd + alt - 5 : yabai -m space --focus 5
-#cmd + alt - 6 : yabai -m space --focus 6
-#cmd + alt - 7 : yabai -m space --focus 7
-#cmd + alt - 8 : yabai -m space --focus 8
-#cmd + alt - 9 : yabai -m space --focus 9
+cmd + alt - up : yabai -m space --focus first
+cmd + alt - k : yabai -m space --focus first
+cmd + alt - down : yabai -m space --focus last
+cmd + alt - j : yabai -m space --focus last
+cmd + alt - left : yabai -m space --focus prev
+cmd + alt - h : yabai -m space --focus prev
+cmd + alt - right : yabai -m space --focus next
+cmd + alt - l : yabai -m space --focus next
+cmd + alt - 1 : yabai -m space --focus 1
+cmd + alt - 2 : yabai -m space --focus 2
+cmd + alt - 3 : yabai -m space --focus 3
+cmd + alt - 4 : yabai -m space --focus 4
+cmd + alt - 5 : yabai -m space --focus 5
+cmd + alt - 6 : yabai -m space --focus 6
+cmd + alt - 7 : yabai -m space --focus 7
+cmd + alt - 8 : yabai -m space --focus 8
+cmd + alt - 9 : yabai -m space --focus 9
 #cmd + alt - 0 : yabai -m space --focus 10
 
 ## move window
