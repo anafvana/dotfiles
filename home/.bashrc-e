@@ -89,20 +89,16 @@ alias ll='ls -la'
 alias psql='psql -h localhost -d hyttegruppen -U hgeier -W'
 alias mongod='nohup mongod --dbpath "/opt/homebrew/var/mongodb"  &>/dev/null &'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
-alias cflag='export CFLAGS="-arch arm64 ${CFLAGS:-}"'
-# alias cmakeflag='export CMAKE_CXX_FLAGS="-stdlib=stdlibc++ ${CMAKE_CXX_FLAGS:-}"'
-# alias clinkerflag='export CMAKE_EXE_LINKER_FLAGS="-stdlib=stdlibc++ ${CMAKE_EXE_LINKER_FLAGS:-}"'
+alias stack='export CFLAGS="-arch arm64 ${CFLAGS:-}"; stack'
 
 # AUTOMATIC CHANGES #
 # changes made automatically by packages/programs
 addToPath '/usr/local/go/bin'
 addToPath '$HOME/etc'
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
-addToPath '/Users/a/.local/bin'
+
 [ -f "/Users/a/.ghcup/env" ] && source "/Users/a/.ghcup/env" # ghcup-envaddToPath /Users/a/go/bin
 
 export PATH="/opt/homebrew/opt/llvm@12/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
-
-[ -f "/Users/a/.ghcup/env" ] && source "/Users/a/.ghcup/env" # ghcup-env
