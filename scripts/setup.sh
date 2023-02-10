@@ -118,8 +118,8 @@ source "$HOME/.bashrc"
 ## .config files
 # format: "target" "subdirectory_in_.config"
 SYMLINKS=(
-	"bspwm" ""
-	"sxhkd" ""
+#	"bspwm" ""
+#	"sxhkd" ""
 	"nvim" ""
 )
 
@@ -149,28 +149,28 @@ do
 done
 
 ## Touchpad config
-tpconf="30-touchpad.conf"
-if [ -L /usr/share/X11/xorg.conf.d/${tpconf} ]
-then
-	echo "A symlink for ${tpconf} was found. Backing it up to ${tpconf}_old"
-	sudo mv /usr/share/X11/xorg.conf.d/${tpconf} /usr/share/X11/xorg.conf.d/${tpconf}_old
-fi
-sudo ln -s "$DOTFILES/other/xorg.conf.d/30-touchpad.conf" /usr/share/X11/xorg.conf.d
+#tpconf="30-touchpad.conf"
+#if [ -L /usr/share/X11/xorg.conf.d/${tpconf} ]
+#then
+#	echo "A symlink for ${tpconf} was found. Backing it up to ${tpconf}_old"
+#	sudo mv /usr/share/X11/xorg.conf.d/${tpconf} /usr/share/X11/xorg.conf.d/${tpconf}_old
+#fi
+#sudo ln -s "$DOTFILES/other/xorg.conf.d/30-touchpad.conf" /usr/share/X11/xorg.conf.d
 
 # INSTALLATIONS #
 ## eww config
-bash "$SCRIPTS/eww.sh"
+#bash "$SCRIPTS/eww.sh"
 
 ## golang
-bash "$SCRIPTS/go.sh"
+#bash "$SCRIPTS/go.sh"
 
 ## nvim plugins
 bash "$SCRIPTS/nvim-setup.sh"
 
-# SETTINGS #
-## Brightness without sudo
-sudo chown root:root /usr/bin/brightnessctl
-sudo chmod 4775 /usr/bin/brightnessctl
+## SETTINGS #
+### Brightness without sudo
+#sudo chown root:root /usr/bin/brightnessctl
+#sudo chmod 4775 /usr/bin/brightnessctl
 
 echo
 echo "Setup done."
