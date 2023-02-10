@@ -37,9 +37,15 @@ function settings.setup()
 	cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json,*.tex,*.cls :HexokinaseTurnOn]])
 	-- with Colorize
 	-- cmd([[autocmd BufEnter *.html,*.css,*.scss,*.js,*.jsx,*.ts,*.tsx,*.json :ColorHighlight]])
+
 	au("BufWritePost", {
         pattern = "*.tex,*.cls",
         command = "!pdflatex main.tex"
+    })
+
+	au("BufWritePost", {
+        pattern = "*.hs",
+		command = "!ghc <afile>"
     })
 
 	require "lspconfig".efm.setup {
