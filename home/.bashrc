@@ -96,11 +96,24 @@ alias ll='ls -la'
 alias psql='psql -h localhost -d postgres -U postgres -W'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
 
-# AUTOMATIC CHANGES #
-# changes made automatically by packages/programs
+# PATH ADDITIONS #
+find /Applications -maxdepth 2 | grep \.app$ | while read filename
+do
+	if [ -d "$filename/Contents/MacOS" ]
+	then
+		line="$filename/Contents/MacOS"
+		line=${line// /\\ }
+		addToPath "$line"
+	fi
+done
+
 addToPath '/usr/local/go/bin'
 addToPath '$HOME/etc'
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
 addToPath '/opt/homebrew/anaconda3/bin'
+
+# AUTOMATIC CHANGES #
+# changes made automatically by packages/programs
 [ -f "/Users/a/.ghcup/env" ] && source "/Users/a/.ghcup/env" # ghcup-envaddToPath /Users/a/go/bin
 
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
