@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Functions
- 
+
 ### Emoji-log functions
 function gcm(){
 	git commit -m "$*"
@@ -59,6 +59,19 @@ function gccln(){
 	gcm "🧹 CLEAN-UP: $@"
 }
 
+function gcdate(){
+	if [ $# -eq 0 ]
+	then
+		echo "Expecting date format: $(date +"%a %b %-d %T %Y")"
+		echo -n "Date: "
+		read -r date
+	else
+		date=$@
+	fi
+
+	GIT_COMMITTER_DATE="$date" git commit --amend --no-edit --date "$date +0100"
+}
+
 function ghelp(){
 	echo "
 		g = git
@@ -75,6 +88,7 @@ function ghelp(){
 		gnb = git checkout -b
 		grb = git branch -d
 		grbf = git branch -D (force delete)
+		gcdate = git commit --amend --no-edit --date
 		gcnew = 📦 NEW
 		gcupg = 🆙 UPGRADE
 		gcimp = 👌 IMPROVE
