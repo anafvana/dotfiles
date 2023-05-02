@@ -72,6 +72,62 @@ function gcdate(){
 	GIT_COMMITTER_DATE="$date" git commit --amend --no-edit --date "$date +0100"
 }
 
+function gcl(){
+	# Check for env variable
+	env_just_set=0
+	while [[ $GIT_USERNAME == "" ]]
+	do
+		echo "Environemnt variable \"GIT_USERNAME\" not found"
+		sleep 0.3
+		echo -n "Insert git username: "
+		read -r git_username
+
+		export GIT_USERNAME="$git_username"
+
+		sleep 0.2
+		echo "GIT_USERNAME set to \"$GIT_USERNAME\""
+		echo ""
+
+		env_just_set=1
+		git_username=""
+	done
+
+	username="$GIT_USERNAME"
+
+	# Allow for username different from env variable
+	if [ $env_just_set -eq 0 ]
+	then
+		echo "Username to be used is \"$username\""
+		sleep 0.3
+		echo -n "Would you like to change it? y/[N] "
+		read -r answer
+		answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
+
+		if [[ "$answer" == "y" ]]
+		then
+			echo -n "Insert git username: "
+			read -r git_username
+			echo $username
+			username="$git_username"
+			echo $username
+		fi
+
+		answer=""
+	fi
+
+	# Run clone operation
+	url="https://$username@github.com/$@"
+
+	echo ""
+	sleep 0.3
+	echo "Starting to clone $url"
+	gh repo clone "$url"
+
+	# Clear variables
+	username=""
+	url=""
+}
+
 function ghelp(){
 	echo "
 		g = git
@@ -80,6 +136,7 @@ function ghelp(){
 		gaa = git add --all
 		gc = git commit
 		gcm = git commit -m
+		gcl = gh repo clone
 		gp = git push
 		gpl = git pull
 		gf = git fetch
