@@ -77,6 +77,7 @@ if [ -f '/Users/ana/etc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ana/etc
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc'; fi
 
+
 # ALIASES #
 ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
 
@@ -86,6 +87,8 @@ do
     		. $HOMEFILES/$file
     		source $HOMEFILES/$file
 	fi
+
+
 done
 
 # other
@@ -95,6 +98,29 @@ alias ll='ls -l'
 alias ll='ls -la'
 alias psql='psql -h localhost -d postgres -U postgres -W'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
+
+pipuninstalldate(){
+	if [ $# -eq 1 ]
+	then
+		date="$1"
+		echo "Date is $date"
+		echo "CAREFUL WITH YOUR CHOICES"
+		echo -n "3... "
+		sleep 0.5
+		echo -n "2... "
+		sleep 0.5
+		echo "1..."
+		sleep 1
+
+		for pkg in `pipbyday | grep "$date" | awk -F ' : ' '{print $2}' | awk -F ' ' '{print $1}'`
+		do
+			pip uninstall $pkg
+		done
+	else
+		echo "Failed. Usage is \"pipuninstalldate YYYY-MM-DD\" "
+	fi
+}
+
 
 # PATH ADDITIONS #
 find /Applications -maxdepth 2 | grep \.app$ | while read filename
