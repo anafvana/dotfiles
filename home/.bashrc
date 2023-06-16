@@ -39,7 +39,7 @@ addToPath '/usr/local/go/bin'
 
 # OTHER ALIASES #
 alias psql='psql -h localhost -d postgres -U postgres -W'
-alias t1="echo 'hi'"
+
 
 # AUTOMATIC CHANGES #
 # changes made automatically by packages/programs
