@@ -20,6 +20,14 @@ export HOMEFILES="${HOME}/.dotfiles/home"
 export CONFIGFILES="${HOME}/.dotfiles/.config"
 export SCRIPTS="${HOME}/.dotfiles/scripts"
 
+# ALIASES #
+SPECIFIC_BASH="${HOMEFILES}/.bashrc_specific"
+
+if [ -f "$SPECIFIC_BASH" ]; then
+    . $SPECIFIC_BASH
+    source $SPECIFIC_BASH
+fi
+
 # clean PATH duplicates
 PATH=$(echo $PATH | tr ':' '\n' | perl -lne 'chomp; print unless $k{$_}; $k{$_}++' | tr '\n' ':' | sed 's/:$//')
 
@@ -70,13 +78,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# GOOGLE CLOUD #
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ana/etc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 # ALIASES #
 ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
@@ -87,8 +88,6 @@ do
     		. $HOMEFILES/$file
     		source $HOMEFILES/$file
 	fi
-
-
 done
 
 # other
@@ -96,7 +95,6 @@ alias v='nvim'
 alias tar='tar -xvf'
 alias ll='ls -l'
 alias ll='ls -la'
-alias psql='psql -h localhost -d postgres -U postgres -W'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
 
 pipuninstalldate(){
@@ -122,24 +120,6 @@ pipuninstalldate(){
 }
 
 
-# PATH ADDITIONS #
-find /Applications -maxdepth 2 | grep \.app$ | while read filename
-do
-	if [ -d "$filename/Contents/MacOS" ]
-	then
-		line="$filename/Contents/MacOS"
-		line=${line// /\\ }
-		addToPath "$line"
-	fi
-done
 
 addToPath '/usr/local/go/bin'
 addToPath '$HOME/etc'
-addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
-addToPath '/opt/homebrew/anaconda3/bin'
-
-# AUTOMATIC CHANGES #
-# changes made automatically by packages/programs
-[ -f "/Users/a/.ghcup/env" ] && source "/Users/a/.ghcup/env" # ghcup-envaddToPath /Users/a/go/bin
-
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
