@@ -2,7 +2,6 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-homeDirs=(".local/bin" "etc")
 for dir in ${homeDirs[@]}
 do
 	if [ ! -d $HOME/$dir ]; then
@@ -14,23 +13,6 @@ export BINARIES="${HOME}/${homeDirs[0]}"
 export OTHER="${HOME}/${homeDirs[1]}"
 export PATH="${PATH}:${BINARIES}"
 
-# .dotfiles directories (autosetup files)
-export DOTFILES="${HOME}/.dotfiles"
-export HOMEFILES="${HOME}/.dotfiles/home"
-export CONFIGFILES="${HOME}/.dotfiles/.config"
-export SCRIPTS="${HOME}/.dotfiles/scripts"
-
-# clean PATH duplicates
-PATH=$(echo $PATH | tr ':' '\n' | perl -lne 'chomp; print unless $k{$_}; $k{$_}++' | tr '\n' ':' | sed 's/:$//')
-
-# conditionally add directories to PATH
-addToPath() {
-	dir="$1"
-	if [[ ! $PATH =~ "$dir" ]]
-	then
-		export PATH=$PATH:$dir
-	fi
-}
 
 # If not running interactively, stop here
 case $- in
@@ -58,6 +40,7 @@ setopt autocd
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+
 # COLOURS #
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -70,6 +53,45 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+
+# FUNCTIONS #
+# clean PATH duplicates
+cleanPath(){
+	export PATH=$(echo $PATH | tr ':' '\n' | perl -lne 'chomp; print unless $k{$_}; $k{$_}++' | tr '\n' ':' | sed 's/:$//')
+}
+
+# conditionally add directories to PATH
+addToPath() {
+	dir="$1"
+	if [[ ! $PATH =~ "$dir" ]]
+	then
+		export PATH=$PATH:$dir
+	fi
+}
+
+# uninstall pip packages by date
+pipuninstalldate(){
+	if [ $# -eq 1 ]
+	then
+		date="$1"
+		echo "Date is $date"
+		echo "CAREFUL WITH YOUR CHOICES"
+		echo -n "3... "
+		sleep 0.5
+		echo -n "2... "
+		sleep 0.5
+		echo "1..."
+		sleep 1
+
+		for pkg in `pipbyday | grep "$date" | awk -F ' : ' '{print $2}' | awk -F ' ' '{print $1}'`
+		do
+			pip uninstall $pkg
+		done
+	else
+		echo "Failed. Usage is \"pipuninstalldate YYYY-MM-DD\" "
+	fi
+}
+
 # ALIASES #
 ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
 
@@ -81,24 +103,15 @@ do
 	fi
 done
 
-# other
 alias v='nvim'
 alias tar='tar -xvf'
 alias ll='ls -l'
 alias ll='ls -la'
-alias psql='psql -h localhost -d hyttegruppen -U hgeier -W'
-alias mongod='nohup mongod --dbpath "/opt/homebrew/var/mongodb"  &>/dev/null &'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
-alias stack='export CFLAGS="-arch arm64 ${CFLAGS:-}"; stack'
 
-# AUTOMATIC CHANGES #
-# changes made automatically by packages/programs
-addToPath '/usr/local/go/bin'
+
+# PATH #
 addToPath '$HOME/etc'
-addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
 
-[ -f "/Users/a/.ghcup/env" ] && source "/Users/a/.ghcup/env" # ghcup-envaddToPath /Users/a/go/bin
-
-export PATH="/opt/homebrew/opt/llvm@12/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
+# NO PATH DUPLICATES #
+cleanPath
