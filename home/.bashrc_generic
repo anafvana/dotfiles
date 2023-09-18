@@ -92,6 +92,15 @@ pipuninstalldate(){
 	fi
 }
 
+md(){
+	if [ $# -eq 1 ]
+	then
+		pandoc "$1" | lynx -stdin
+	else
+		echo "Failed. Usage is \"md file.md\" "
+	fi
+}
+
 # ALIASES #
 ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
 
@@ -108,7 +117,6 @@ alias tar='tar -xvf'
 alias ll='ls -l'
 alias ll='ls -la'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
-
 
 # PATH #
 addToPath '$HOME/etc'
