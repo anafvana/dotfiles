@@ -18,7 +18,7 @@ fi
 # GOOGLE CLOUD #
 if [ -f '/Users/ana/etc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc'; fi
-
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 # PATH ADDITIONS #
 find /Applications -maxdepth 2 | grep \.app$ | while read filename
