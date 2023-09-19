@@ -97,7 +97,7 @@ md(){
 	then
 		pandoc "$1" | lynx -stdin
 	else
-		echo "Failed. Usage is \"md file.md\" "
+		echo "ERROR: Usage is \"md file.md\" "
 	fi
 }
 
