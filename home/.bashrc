@@ -8,34 +8,21 @@ export SCRIPTS="${HOME}/.dotfiles/scripts"
 
 # ALIASES #
 GENERIC_BASH="${HOMEFILES}/.bashrc_generic"
-
 if [ -f "$GENERIC_BASH" ]; then
     . $GENERIC_BASH
     source $GENERIC_BASH
 fi
 
+MAC_BASH="${HOMEFILES}/.bashrc_mac"
+if [ -f "$MAC_BASH" ]; then
+    . $MAC_BASH
+    source $MAC_BASH
+fi
 
 # GOOGLE CLOUD #
 if [ -f '/Users/ana/etc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc'; fi
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
-
-# PATH ADDITIONS #
-find /Applications -maxdepth 2 | grep \.app$ | while read filename
-do
-	if [ -d "$filename/Contents/MacOS" ]
-	then
-		line="$filename/Contents/MacOS"
-		line=${line// /\\ }
-		addToPath "$line"
-	fi
-done
-
-addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
-addToPath '/opt/homebrew/anaconda3/bin'
-addToPath '/opt/homebrew/opt/node@18/bin'
-addToPath '/usr/local/go/bin'
-
 
 # OTHER ALIASES #
 alias psql='psql -h localhost -d postgres -U postgres -W'
