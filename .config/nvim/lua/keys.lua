@@ -9,7 +9,8 @@ function keys.setup()
 	g.maplocalleader = ","
 
 	-- autocomplete find & replace
-	map('n', 'S', ':%s//gc<Left><Left><Left>', n)
+	map('n', 'S', ':%s///gc<Left><Left><Left><Left>', n)
+	map('n', 's', ':X,Ys///gc<Left><Left><Left><Left><Left><Left><Left><Left><Left>', n)
 
 	-- clear highlights
 	map('n', '<Leader>x', ':noh<CR>', n)
