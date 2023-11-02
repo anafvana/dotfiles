@@ -175,6 +175,7 @@ alias ll='ls -l'
 alias ll='ls -la'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
 alias ip='curl ifconfig.me ; printf "\n"'
+alias venv='function _(){ if [ ! -d "$(pwd)/venv" ]; then python3 -m venv "$(pwd)/venv"; fi; source "$(pwd)/venv/bin/activate" }; _'
 
 # PATH #
 addToPath '$HOME/etc'
