@@ -1,3 +1,6 @@
+# SETTINGS #
+export GPG_TTY=$(tty)
+
 # PATH ADDITIONS #
 find /Applications -maxdepth 2 | grep \.app$ | while read filename
 do
