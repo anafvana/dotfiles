@@ -92,6 +92,72 @@ pipuninstalldate(){
 	fi
 }
 
+md(){
+	if [ $# -eq 1 ]
+	then
+		pandoc "$1" | lynx -stdin
+	else
+		echo "ERROR: Usage is \"md file.md\" "
+	fi
+}
+
+mdToPdf(){
+	if [ $# -lt 1 ] || [ $# -gt 2 ]
+	then
+		echo "ERROR: Usage is \"mdToPdf infile.md [outfile.pdf]\""
+		return 1
+	fi
+
+	if [[ ! -e "$1" ]]
+	then
+		echo "ERROR: File $1 does not exist"
+		return 1
+	fi
+
+	if [[ "$1" != *.md ]]
+	then
+		echo "ERROR: Wrong input file type. Got $1, expected .md"
+		echo "Usage is \"mdToPdf infile.md [outfile.pdf]\""
+		return 1
+	fi
+
+	if [ $# -eq 1 ]
+	then
+		2=$(echo "$1" | sed 's/\.md$/\.pdf/')
+		echo "WARNING: No output file name provided"
+		echo "Output file will be \"$2\""
+		echo ""
+	fi
+
+
+	if [[ -e "$2" ]]
+	then
+		sleep 0.5
+		echo -n "WARNING: File $2 already exists. Do you want to override it? [y]es [N]o : "
+		read answer
+		answer=$(echo "$answer" | awk '{print tolower($0)}')
+
+		if [[ $answer == "y" || $answer == "yes" ]]
+		then
+			echo "Overriding..."
+			sleep 0.5
+		else
+			echo "Operation cancelled"
+			return 1
+		fi
+	fi
+
+
+	if [[ "$2" != *.pdf ]]
+	then
+		echo "ERROR: Wrong output file type. Got $2, expected .pdf"
+		echo "Usage is \"mdToPdf infile.md [outfile.pdf]\""
+		return 1
+	fi
+
+	pandoc -V geometry:margin=1in --from=markdown --to=pdf "$1" -o "$2"
+}
+
 # ALIASES #
 ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
 
@@ -108,7 +174,8 @@ alias tar='tar -xvf'
 alias ll='ls -l'
 alias ll='ls -la'
 alias pdfcompress='function _(){ if [ $# -eq 2 ]; then  "gs" -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1; else echo "Wrong number of arguments. Usage: pdfcompress [input.pdf] [output.pdf]"; fi }; _'
-
+alias ip='curl ifconfig.me ; printf "\n"'
+alias venv='function _(){ if [ ! -d "$(pwd)/venv" ]; then python3 -m venv "$(pwd)/venv"; fi; source "$(pwd)/venv/bin/activate" }; _'
 
 # PATH #
 addToPath '$HOME/etc'

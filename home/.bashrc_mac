@@ -1,0 +1,21 @@
+# SETTINGS #
+export GPG_TTY=$(tty)
+
+# PATH ADDITIONS #
+find /Applications -maxdepth 2 | grep \.app$ | while read filename
+do
+	if [ -d "$filename/Contents/MacOS" ]
+	then
+		line="$filename/Contents/MacOS"
+		line=${line// /\\ }
+		addToPath "$line"
+	fi
+done
+
+addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
+addToPath '/opt/homebrew/anaconda3/bin'
+addToPath '/opt/homebrew/opt/node@18/bin'
+addToPath '/usr/local/go/bin'
+
+# OTHER ALIASES #
+alias bash4="/opt/homebrew/bin/bash"
