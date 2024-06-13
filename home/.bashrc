@@ -44,6 +44,8 @@ function ghana(){
 
 # OTHER ALIASES #
 alias psql='psql -h localhost -d postgres -U postgres -W'
+alias sme='ssh -AX -p 7226 88.87.45.118'
+alias bridge='function _(){ bridgedir="$HOME/Documents/CDC/bridge"; cd "$bridgedir"; rm bridge.py 2&> /dev/null; venv; python3 "$bridgedir/main.py" -p "$1"; if [ -f "$bridgedir/bridge.py" ]; then echo "bridge.py created at $bridgedir/bridge.py"; chmod 711 bridge.py; open -a TextEdit bridge.py; else echo "bridge.py failed to create"; fi; deactivate; cd -; }; _'
 
 
 # AUTOMATIC CHANGES #
