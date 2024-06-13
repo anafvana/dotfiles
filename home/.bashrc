@@ -24,6 +24,24 @@ if [ -f '/Users/ana/etc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ana/etc
 if [ -f '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ana/etc/google-cloud-sdk/completion.zsh.inc'; fi
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
+# GITHUB IDENTITY SWITCHING #
+ssh="$HOME/.ssh"
+main_ssh="id_rsa"
+anafvana="anafvana@github"
+anacdc="ana-cdc"
+
+function ghcdc(){
+	cp "$ssh/$anacdc" "$ssh/$main_ssh"
+	cp "$ssh/$anacdc.pub" "$ssh/$main_ssh.pub"
+	echo "SSH key is ana-cdc"
+}
+
+function ghana(){
+	cp "$ssh/$anafvana" "$ssh/$main_ssh"
+	cp "$ssh/$anafvana.pub" "$ssh/$main_ssh.pub"
+	echo "SSH key is anafvana"
+}
+
 # OTHER ALIASES #
 alias psql='psql -h localhost -d postgres -U postgres -W'
 
