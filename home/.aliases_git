@@ -130,35 +130,37 @@ function gcl(){
 
 function ghelp(){
 	echo "
-		g = git
-		gs = git status
-		ga = git add
-		gaa = git add --all
-		gc = git commit
-		gcm = git commit -m
-		gcl = gh repo clone
-		gp = git push
-		gpl = git pull
-		gf = git fetch
-		gl = git log --decorate --graph
-		gco = git checkout
-		gnb = git checkout -b
-		grb = git branch -d
-		grbf = git branch -D (force delete)
-		gcdate = git commit --amend --no-edit --date
-		gcnew = 📦 NEW
-		gcupg = 🆙 UPGRADE
-		gcimp = 👌 IMPROVE
-		gcmin = 🤏 MINOR
-		gcref = 🔨 REFACTOR
-		gcfix = 🐛 FIX
-		gcbug = 🐛 FIX
-		gcrel = 🚀 RELEASE
-		gcdoc = 📖 DOC
-		gctst = ✅ TEST
-		gcmrg = 🔀 MERGE
-		gcrmv = ❌ REMOVE
-		gccln = 🧹 CLEAN-UP
+		g	= git
+		gs	= git status
+		ga	= git add
+		gaa	= git add --all
+		gpt	= git add --patch
+		gpa	= git add --patch --all
+		gc	= git commit
+		gcm	= git commit -m
+		gcl	= gh repo clone
+		gp	= git push
+		gpl	= git pull
+		gf	= git fetch
+		gl	= git log --decorate --graph
+		gco	= git checkout
+		gnb	= git checkout -b
+		grb	= git branch -d
+		grbf	= git branch -D (force delete)
+		gcdate	= git commit --amend --no-edit --date
+		gcnew	= 📦 NEW
+		gcupg	= 🆙 UPGRADE
+		gcimp	= 👌 IMPROVE
+		gcmin	= 🤏 MINOR
+		gcref	= 🔨 REFACTOR
+		gcfix	= 🐛 FIX
+		gcbug	= 🐛 FIX
+		gcrel	= 🚀 RELEASE
+		gcdoc	= 📖 DOC
+		gctst	= ✅ TEST
+		gcmrg	= 🔀 MERGE
+		gcrmv	= ❌ REMOVE
+		gccln	= 🧹 CLEAN-UP
 	"
 }
 
@@ -179,3 +181,4 @@ alias gco='git checkout'
 alias gnb='git checkout -b'
 alias grb='git branch -d'
 alias grbf='git branch -D'
+alias gchelp='ghelp'
