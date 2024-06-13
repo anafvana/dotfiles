@@ -19,3 +19,4 @@ addToPath '/usr/local/go/bin'
 
 # OTHER ALIASES #
 alias bash4="/opt/homebrew/bin/bash"
+alias act="act --container-architecture linux/amd64"
