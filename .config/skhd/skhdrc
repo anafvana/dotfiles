@@ -21,19 +21,23 @@ cmd - t : open -na Alacritty
 cmd + shift - b : open -na Firefox
 
 ## swap window
-cmd + shift - 0x7C : yabai -m window --swap west # 0x7C is ->
-cmd + shift - 0x7D : yabai -m window --swap south # 0x7D is down
-cmd + shift - 0x7E : yabai -m window --swap north # 0x7E is up
-cmd + shift - 0x7B : yabai -m window --swap east # 0x7B is <-
+cmd + shift - right : yabai -m window --swap west
+cmd + shift - left : yabai -m window --swap east
+cmd + shift - down : yabai -m window --swap south
+cmd + shift - up : yabai -m window --swap north
 
 ## send window to monitor and follow focus
 #hyper - u : /Users/jesseskelton/CustomScripts/SwitcSpaces/moveWindowLeftAndFollowFocus.sh
 #hyper - p : /Users/jesseskelton/CustomScripts/SwitchSpaces/moveWindowRightAndFollowFocus.sh
 
 ## focus display
-fn + cmd - 1 : yabai -m window --display 1 yabai -m display --focus 1
-fn + cmd - 2 : yabai -m window --display 2 yabai -m display --focus 2
-fn + cmd - 3 : yabai -m window --display 3 yabai -m display --focus 3
+# fn + cmd - 1 : yabai -m window --display 1 yabai -m display --focus 1
+# fn + cmd - 2 : yabai -m window --display 2 yabai -m display --focus 2
+# fn + cmd - 3 : yabai -m window --display 3 yabai -m display --focus 3
+ctrl + cmd - right : yabai -m window --focus west
+ctrl + cmd - left : yabai -m window --focus east
+ctrl + cmd - up : yabai -m window --focus north
+ctrl + cmd - down : yabai -m window --focus south
 
 ## increase window size
 #shift + alt - a : yabai -m window --resize left:-20:0
@@ -112,10 +116,10 @@ cmd - m : yabai -m window --toggle zoom-fullscreen
 #yabai -m window --grid 4:4:1:1:2:2 ## toggle sticky alt - s : yabai -m window --toggle sticky ## toggle sticky, float and resize to picture-in-picture size alt - p : yabai -m window --toggle sticky;\ yabai -m window --grid 5:5:4:0:1:1 ## change layout of desktop ctrl + alt - a : yabai -m space --layout bsp ctrl + alt - d : yabai -m space --layout float
 
 ## toggle window split type
-#alt - e : yabai -m window --toggle split
+alt - t : yabai -m window --toggle split
 
 ## toggle window border
-#shift + alt - b : yabai -m window --toggle border
+# shift + alt - b : yabai -m window --toggle border
 
 ## create desktop, move window and follow focus
 #shift + cmd - n : yabai -m space --create && \
