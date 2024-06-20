@@ -2,7 +2,7 @@
 
 # finding key codes: $ skhd --observe
 
-## HYPER == SHIFT + CMD + ALT + OPTION
+# HYPER == SHIFT + CMD + ALT + OPTION
 
 ## Quickly restart the yabai launch agent
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
@@ -15,10 +15,10 @@ ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 #lshift - x : terminal-notifier -message "$(yabai -m query --windows --window | jq -re ".id")"
 
 ## open terminal
-cmd - t : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - t : open -na Alacritty
 
 ## open terminal
-cmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
+cmd + shift - b : open -na Firefox
 
 ## swap window
 cmd + shift - 0x7C : yabai -m window --swap west # 0x7C is ->
