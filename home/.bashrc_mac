@@ -12,6 +12,11 @@ do
 	fi
 done
 
+yabaiRestart () {
+	echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+	yabai --restart-service
+}
+
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
 addToPath '/opt/homebrew/anaconda3/bin'
 addToPath '/opt/homebrew/opt/node@18/bin'
