@@ -43,6 +43,10 @@ function gcdoc() {
 	gcm "📖 DOC: $@"
 }
 
+function gcfmt() {
+	gcm "💄 FORMAT: $@"
+}
+
 function gctst() {
 	gcm "✅ TEST: $@"
 }
@@ -157,6 +161,7 @@ function ghelp(){
 		gcbug	= 🐛 FIX
 		gcrel	= 🚀 RELEASE
 		gcdoc	= 📖 DOC
+		gcfmt	= 💄 FORMAT
 		gctst	= ✅ TEST
 		gcmrg	= 🔀 MERGE
 		gcrmv	= ❌ REMOVE
