@@ -19,9 +19,14 @@ if [ -f "$MAC_BASH" ]; then
 fi
 
 # LLVM #
-addToPath '/opt/homebrew/opt/llvm@12/bin'
-export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# # Clang 12
+# addToPath '/opt/homebrew/opt/llvm@12/bin'
+# export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
+
+# Clang latest
+LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
 
 # C, GCC, CMAKE #
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
