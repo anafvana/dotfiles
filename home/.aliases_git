@@ -68,12 +68,15 @@ function gcdate(){
 	then
 		echo "Expecting date format: $(date +"%a %b %-d %T %Y")"
 		echo -n "Date: "
-		read -r date
+		read -r input
 	else
 		date=$@
+		echo "$date"
 	fi
 
-	GIT_COMMITTER_DATE="$date" git commit --amend --no-edit --date "$date +0100"
+	timezone=$(TZ='Europe/Oslo' date -d "$date" +"%z" 2> /dev/null || TZ='Europe/Oslo' date -j -f "%a %b %d %H:%M:%S %Y" "$date" +"%z" 2> /dev/null)
+
+	GIT_COMMITTER_DATE="$date" git commit --amend --no-edit --date "$date $timezone"
 }
 
 function gcl(){
