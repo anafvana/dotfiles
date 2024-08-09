@@ -37,12 +37,14 @@ alias cflag='export CFLAGS="-arch arm64 ${CFLAGS:-}"'
 
 # ALIASES #
 alias psql='psql -h localhost -d postgres -U postgres -W'
+alias rustr='evcxr'
 
 # ADDITIONS TO PATH #
 addToPath '/opt/homebrew/anaconda3/bin'
 addToPath '/opt/homebrew/opt/node@18/bin'
 addToPath '/usr/local/go/bin'
-addToPath '/Users/a/.local/bin'
+addToPath "$HOME/.local/bin"
+addToPath "$HOME/.cargo/bin"
 
 # AUTOMATIC CHANGES #
 # changes made automatically by packages/programs
