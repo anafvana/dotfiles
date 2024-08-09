@@ -2,15 +2,15 @@
 export GPG_TTY=$(tty)
 
 # PATH ADDITIONS #
-find /Applications -maxdepth 2 | grep \.app$ | while read filename
-do
-	if [ -d "$filename/Contents/MacOS" ]
-	then
-		line="$filename/Contents/MacOS"
-		line=${line// /\\ }
-		addToPath "$line"
-	fi
-done
+# find /Applications -maxdepth 2 | grep \.app$ | while read filename
+# do
+# 	if [ -d "$filename/Contents/MacOS" ]
+# 	then
+# 		line="$filename/Contents/MacOS"
+# 		line=${line// /\\ }
+# 		addToPath "$line"
+# 	fi
+# done
 
 yabaiRestart () {
 	echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
