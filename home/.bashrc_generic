@@ -179,7 +179,8 @@ alias venv='function _(){ if [ ! -d "$(pwd)/venv" ]; then python3 -m venv "$(pwd
 alias sourch='source "$HOME/.bashrc"'
 
 # PATH #
-addToPath '$HOME/etc'
+addToPath "$HOME/etc"
+addToPath "$HOME/.ghcup/bin"
 
 # NO PATH DUPLICATES #
 cleanPath
