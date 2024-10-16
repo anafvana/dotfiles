@@ -23,6 +23,14 @@ function gcmin(){
 	gcm "🤏 MINOR: $@"
 }
 
+function gcprp(){
+	gcm "🚧 PREPARATION: $@"
+}
+
+function gcpre(){
+	gcprp "$@"
+}
+
 function gcref(){
 	gcm "🔨 REFACTOR: $@"
 }
@@ -159,6 +167,8 @@ function ghelp(){
 		gcupg	= 🆙 UPGRADE
 		gcimp	= 👌 IMPROVE
 		gcmin	= 🤏 MINOR
+		gcpre	= 🚧 PREPARATION
+		gcprp	= 🚧 PREPARATION
 		gcref	= 🔨 REFACTOR
 		gcfix	= 🐛 FIX
 		gcbug	= 🐛 FIX
