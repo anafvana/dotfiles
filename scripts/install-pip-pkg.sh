@@ -26,6 +26,7 @@ do
 		"n"|"no"|"")
 			break ;;
 		"y"|"yes")
+			echo "Tough luck, someone was lazy and didn't implement this feature"
 			break ;;
 		*)
 			read -r -p "Do you want to link this package's binaries to /usr/local/bin ? [y]es [N]o: " answer
