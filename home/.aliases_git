@@ -143,6 +143,21 @@ function gcl(){
 	url=""
 }
 
+function gpf(){
+	branch="$1"
+	file="${@:2}" # This syntax is NOT plain POSIX compatible (e.g. dash)
+
+	if [ $# -lt 2 ]
+	then
+		echo "This command requires at least 2 arguments."
+		echo "Usage: gcf source_branch file.py"
+		return 1
+	fi
+
+	git checkout --patch "$branch" "$file"
+
+}
+
 function ghelp(){
 	echo "
 		g	= git
@@ -151,6 +166,7 @@ function ghelp(){
 		gaa	= git add --all
 		gpt	= git add --patch
 		gpa	= git add --patch --all
+		gpf	= git checkout --patch [from_branch] [file]
 		gc	= git commit
 		gcm	= git commit -m
 		gcl	= gh repo clone
