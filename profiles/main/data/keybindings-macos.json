@@ -1,0 +1,28 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "alt+r",
+        "command": "python.execInTerminal-icon",
+        "when": "resourceFilename =~ /.py$/"
+    },
+    {
+        "key": "alt+r",
+        "command": "go.playground",
+        "when": "resourceFilename =~ /.go$/"
+    },
+    {
+        "key": "alt+r",
+        "command": "rust-analyzer.run",
+        "when": "resourceFilename =~ /.rs$/",
+    },
+    {
+        "key": "alt+r",
+        "command": "markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "cmd+k v",
+        "command": "-markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+]

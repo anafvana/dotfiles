@@ -1,0 +1,168 @@
+{
+  "window.zoomLevel": 1,
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  },
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "workbench.colorTheme": "Default Dark+",
+  // ---------- SETTINGS BY LANGUAGE ----------
+  // Go
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "golang.go",
+    "todo-tree.highlights.useColourScheme": true
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "go.formatTool": "gofmt",
+  // Python
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always",
+      "source.fixAll": "always"
+    }
+  },
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "python.languageServer": "Pylance",
+  "isort.args": ["--profile", "black", "--remove-duplicates"],
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.(py)$",
+        "cmd": "autoflake --remove-all-unused-imports --in-place --recursive --exclude __init__.py ${file}"
+      }
+    ]
+  },
+  "mypy-type-checker.showNotifications": "always",
+  "flake8.args": ["--config=$HOME/.config/.flake8"],
+  // Webdev (TS/JS, React, CSS, HTML, etc)
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Haskell
+  "haskell.manageHLS": "GHCup",
+  "haskell.trace.server": "messages",
+  "haskell.trace.client": "debug",
+  "json.schemas": [],
+  "todo-tree.filtering.excludeGlobs": ["**/venv/**"],
+  "todo-tree.general.tags": [
+    "BUG",
+    "FIXME",
+    "FIX",
+    "FIXIT",
+    "HACK",
+    "CHECK",
+    "IMPROVE",
+    "TODO",
+    "TO-DO",
+    "[//]: # (TODO",
+    "[//]: # (TO-DO",
+    "DEV",
+    "[ ]",
+    "( )",
+    "[x]",
+    "(x)"
+  ],
+  "todo-tree.general.tagGroups": {
+    "FIXME": ["FIXME", "FIXIT", "FIX"],
+    "TO-DO": ["TODO", "TO-DO", "[//]: # (TODO", "[//]: # (TO-DO"],
+    "[ ]": ["( )", "[ ]"],
+    "[x]": ["(x)", "[x]"]
+  },
+  "todo-tree.highlights.defaultHighlight": {
+    "type": "whole-line",
+    "opacity": 10,
+    "gutterIcon": true
+  },
+  "todo-tree.highlights.customHighlight": {
+    "HACK": {
+      "icon": "alert",
+      "iconColour": "#c64ff9",
+      "background": "#c64ff9",
+      "foreground": "#e09ffc"
+    },
+    "BUG": {
+      "icon": "bug",
+      "iconColour": "#f91e0e",
+      "background": "#f91e0e",
+      "foreground": "#f998ad"
+    },
+    "FIXME": {
+      "icon": "tools",
+      "iconColour": "#ef9b4c",
+      "background": "#ef9b4c",
+      "foreground": "#ef9b4c"
+    },
+    "CHECK": {
+      "icon": "question",
+      "iconColour": "#efdc4c",
+      "background": "#efdc4c",
+      "foreground": "#efdc4c"
+    },
+    "IMPROVE": {
+      "icon": "zap",
+      "iconColour": "#0bbf44",
+      "background": "#0bbf44",
+      "foreground": "#0bbf44"
+    },
+    "TO-DO": {
+      "icon": "check-circle",
+      "iconColour": "#0e98f9",
+      "background": "#0e98f9",
+      "foreground": "#59b7f9"
+    },
+    "DEV": {
+      "icon": "beaker",
+      "iconColour": "#a781f9",
+      "background": "#854ff9",
+      "foreground": "#a781f9"
+    },
+    "[ ]": {
+      "icon": "circle",
+      "iconColour": "#E0E0E0",
+      "background": "#FFFFFF",
+      "foreground": "#E0E0E0"
+    },
+    "[x]": {
+      "icon": "check-circle-fill",
+      "iconColour": "#9E9E9E",
+      "background": "#9E9E9E",
+      "foreground": "#9E9E9E"
+    }
+  },
+  // Other languages
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  // ---------- OTHER TOOLS ----------
+  "formatFiles.runOrganizeImports": true,
+  "diffEditor.maxComputationTime": 0,
+}
