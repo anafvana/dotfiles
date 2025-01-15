@@ -197,7 +197,7 @@ function ghelp(){
 		gcmrg	= 🔀 MERGE
 		gcrmv	= ❌ REMOVE
 		gccln	= 🧹 CLEAN-UP
-	"
+	" | column -t -s $'\t'
 }
 
 ## Aliases
