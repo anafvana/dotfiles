@@ -200,6 +200,16 @@ function ghelp(){
 	" | column -t -s $'\t'
 }
 
+function greminder(){
+	echo "
+		gpf	= [ALIAS] Patch single file from another branch
+		git stash --all	= Include untracked files when stashing
+		git stash --keep-index	= Leave staged changes behind
+	" | column -t -s $'\t'
+}
+
+
+
 ## Aliases
 alias g='git'
 alias gs='git status'
@@ -220,3 +230,4 @@ alias gnb='git checkout -b'
 alias grb='git branch -d'
 alias grbf='git branch -D'
 alias gchelp='ghelp'
+alias gcreminder='greminder'
