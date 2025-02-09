@@ -92,13 +92,13 @@ else
 fi
 
 # DISTRO-DEPENDANT INSTALLATIONS #
-pkg=$(bash "$SCRIPTS/id_pkgmgr.sh")
+pkg=$(bash "$SCRIPTS/utils/id_pkgmgr.sh")
 case $pkg in
 	apt)
-		bash "$SCRIPTS/setup-apt.sh"
+		bash "$SCRIPTS/utils/setup-apt.sh"
 		;;
 	dnf)
-		bash "$SCRIPTS/setup-dnf.sh"
+		bash "$SCRIPTS/utils/setup-dnf.sh"
 		;;
 	*)
 		echo "No setup for package manager: $pkg"

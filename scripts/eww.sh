@@ -2,6 +2,8 @@
 
 #This is a temporary script to supply for eww's absence in most package managers. Check https://elkowar.github.io/eww/eww.html to make sure this is still the ideal procedure
 
+UTILS="$SCRIPTS/utils"
+
 declare PKGMGR
 
 # package manager can be passed as an argument or automatically identified
@@ -9,7 +11,7 @@ if [ "$#" -eq 1 ]
 then
 	PKGMGR=$1
 else
-	PKGMGR=$(chmod +x $SCRIPTS/id_pkgmgr.sh ; bash $SCRIPTS/id_pkgmgr.sh)
+	PKGMGR=$(chmod +x $UTILS/id_pkgmgr.sh ; bash $UTILS/id_pkgmgr.sh)
 fi
 
 # core installation task
