@@ -12,6 +12,16 @@ export GPG_TTY=$(tty)
 # 	fi
 # done
 
+# append to the history file, don't overwrite it
+#setopt histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+#setopt checkwinsize
+
+# autocd
+setopt autocd
+
 yabaiRestart () {
 	echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
 	yabai --restart-service
