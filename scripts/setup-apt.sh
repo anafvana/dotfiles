@@ -5,7 +5,7 @@ then
 	SCRIPTS=$HOME/.dotfiles/scripts
 fi
 
-read -pr "Your scripts folder is defined as \"$SCRIPTS\". Is that correct? [Y]es [n]o: " answer
+read -r -p "Your scripts folder is defined as \"$SCRIPTS\". Is that correct? [Y]es [n]o: " answer
 answer=$(echo "$answer" | awk '{print tolower($0)}')
 
 if [[ $answer == "n" || $answer == "no" ]]
