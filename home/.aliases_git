@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export GIT_AUTHOR_NAME='Ana'
-
 ## Functions
 
 ### Emoji-log functions
@@ -25,6 +23,14 @@ function gcmin(){
 	gcm "🤏 MINOR: $@"
 }
 
+function gcprp(){
+	gcm "🚧 PREPARATION: $@"
+}
+
+function gcpre(){
+	gcprp "$@"
+}
+
 function gcref(){
 	gcm "🔨 REFACTOR: $@"
 }
@@ -45,16 +51,16 @@ function gcdoc() {
 	gcm "📖 DOC: $@"
 }
 
+function gcfmt() {
+	gcm "💄 FORMAT: $@"
+}
+
 function gctst() {
 	gcm "✅ TEST: $@"
 }
 
 function gcmrg() {
 	gcm "🔀 MERGE: $@"
-}
-
-function gcrwd() {
-	gcm "⏪ REWIND: $@"
 }
 
 function gcrmv() {
@@ -65,51 +71,163 @@ function gccln(){
 	gcm "🧹 CLEAN-UP: $@"
 }
 
+function gcdate(){
+	if [ $# -eq 0 ]
+	then
+		echo "Expecting date format: $(date +"%a %b %-d %T %Y")"
+		echo -n "Date: "
+		read -r input
+	else
+		date=$@
+		echo "$date"
+	fi
+
+	timezone=$(TZ='Europe/Oslo' date -d "$date" +"%z" 2> /dev/null || TZ='Europe/Oslo' date -j -f "%a %b %d %H:%M:%S %Y" "$date" +"%z" 2> /dev/null)
+
+	GIT_COMMITTER_DATE="$date" git commit --amend --no-edit --date "$date $timezone"
+}
+
+function gcl(){
+	# Check for env variable
+	env_just_set=0
+	while [[ $GIT_USERNAME == "" ]]
+	do
+		echo "Environemnt variable \"GIT_USERNAME\" not found"
+		sleep 0.3
+		echo -n "Insert git username: "
+		read -r git_username
+
+		export GIT_USERNAME="$git_username"
+
+		sleep 0.2
+		echo "GIT_USERNAME set to \"$GIT_USERNAME\""
+		echo ""
+
+		env_just_set=1
+		git_username=""
+	done
+
+	username="$GIT_USERNAME"
+
+	# Allow for username different from env variable
+	if [ $env_just_set -eq 0 ]
+	then
+		echo "Username to be used is \"$username\""
+		sleep 0.3
+		echo -n "Would you like to change it? y/[N] "
+		read -r answer
+		answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
+
+		if [[ "$answer" == "y" ]]
+		then
+			echo -n "Insert git username: "
+			read -r git_username
+			echo $username
+			username="$git_username"
+			echo $username
+		fi
+
+		answer=""
+	fi
+
+	# Run clone operation
+	url="https://$username@github.com/$@"
+
+	echo ""
+	sleep 0.3
+	echo "Starting to clone $url"
+	gh repo clone "$url"
+
+	# Clear variables
+	username=""
+	url=""
+}
+
+function gpf(){
+	branch="$1"
+	file="${@:2}" # This syntax is NOT plain POSIX compatible (e.g. dash)
+
+	if [ $# -lt 2 ]
+	then
+		echo "This command requires at least 2 arguments."
+		echo "Usage: gcf source_branch file.py"
+		return 1
+	fi
+
+	git checkout --patch "$branch" "$file"
+
+}
+
 function ghelp(){
 	echo "
-		g = git
-		gs = git status
-		ga = git add
-		gaa = git add --all
-		gc = git commit
-		gcm = git commit -m
-		gp = git push
-		gpl = git pull
-		gf = git fetch
-		gl = git log --decorate --graph
-		gco = git chekout
-		gnb = git checkout -b
-		grb = git branch -d
-		grbf = git branch -D (force delete)
-		gcnew = 📦 NEW
-		gcupg = 🆙 UPGRADE
-		gcimp = 👌 IMPROVE
-		gcmin = 🤏 MINOR
-		gcref = 🔨 REFACTOR
-		gcfix = 🐛 FIX
-		gcbug = 🐛 FIX
-		gcrel = 🚀 RELEASE
-		gcdoc = 📖 DOC
-		gctst = ✅ TEST
-		gcmrg = 🔀 MERGE
-		gcrwd = ⏪ REWIND
-		gcrmv = ❌ REMOVE
-		gccln = 🧹 CLEAN-UP
-	"
+		g	= git
+		gs	= git status
+		ga	= git add
+		gaa	= git add --all
+		gpt	= git add --patch
+		gpa	= git add --patch --all
+		gpf	= git checkout --patch [from_branch] [file]
+		gc	= git commit
+		gcm	= git commit -m
+		gcane	= git commit --amend --no-edit
+		gcdate	= git commit --amend --no-edit --date
+		gcl	= gh repo clone
+		gp	= git push
+		gpl	= git pull
+		gf	= git fetch
+		girb	= git rebase -i
+		gl	= git log --decorate --graph
+		gco	= git checkout
+		gnb	= git checkout -b
+		grb	= git branch -d
+		grbf	= git branch -D (force delete)
+		gcnew	= 📦 NEW
+		gcupg	= 🆙 UPGRADE
+		gcimp	= 👌 IMPROVE
+		gcmin	= 🤏 MINOR
+		gcpre	= 🚧 PREPARATION
+		gcprp	= 🚧 PREPARATION
+		gcref	= 🔨 REFACTOR
+		gcfix	= 🐛 FIX
+		gcbug	= 🐛 FIX
+		gcrel	= 🚀 RELEASE
+		gcdoc	= 📖 DOC
+		gcfmt	= 💄 FORMAT
+		gctst	= ✅ TEST
+		gcmrg	= 🔀 MERGE
+		gcrmv	= ❌ REMOVE
+		gccln	= 🧹 CLEAN-UP
+	" | column -t -s $'\t'
 }
+
+function greminder(){
+	echo "
+		gpf	= [ALIAS] Patch single file from another branch
+		git stash --all	= Include untracked files when stashing
+		git stash --keep-index	= Leave staged changes behind
+	" | column -t -s $'\t'
+}
+
+
 
 ## Aliases
 alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
+alias gpt='git add --patch'
+alias gpa='git add --patch --all'
 alias gc='git commit'
 alias gcm='git commit -m'
+alias gcane='git commit --amend --no-edit'
 alias gp='git push'
 alias gpl='git pull'
 alias gf='git fetch'
+alias girb='git rebase -i'
 alias gl='git log --decorate --graph'
-alias gco='git chekout'
+alias gco='git checkout'
 alias gnb='git checkout -b'
 alias grb='git branch -d'
 alias grbf='git branch -D'
+alias gchelp='ghelp'
+alias gcreminder='greminder'
