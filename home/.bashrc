@@ -2,26 +2,28 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# DIRECTORIES #
 homeDirs=(".local/bin" "etc")
-for dir in ${homeDirs[@]}
-do
-	if [ ! -d $HOME/$dir ]; then
-    		mkdir $HOME/$dir
-	fi
-done
 
-export BINARIES="${HOME}/${homeDirs[0]}"
-export OTHER="${HOME}/${homeDirs[1]}"
-export PATH="${PATH}:${BINARIES}"
-
-# .dotfiles directories (autosetup files)
 export DOTFILES="${HOME}/.dotfiles"
 export HOMEFILES="${HOME}/.dotfiles/home"
 export CONFIGFILES="${HOME}/.dotfiles/.config"
 export SCRIPTS="${HOME}/.dotfiles/scripts"
 
-# clean PATH duplicates
-PATH=$(echo $PATH | tr ':' '\n' | perl -lne 'chomp; print unless $k{$_}; $k{$_}++' | tr '\n' ':' | sed 's/:$//')
+# ADDITIONAL BASHRCs #
+
+GENERIC_BASH="${HOMEFILES}/.bashrc_generic"
+LINUX_BASH="${HOMEFILES}/.bashrc_linux"
+
+if [ -f "$GENERIC_BASH" ]; then
+	. $GENERIC_BASH
+        source $GENERIC_BASH
+fi
+
+if [ -f "$LINUX_BASH" ]; then
+	. $LINUX_BASH
+        source $LINUX_BASH
+fi
 
 # conditionally add directories to PATH
 addToPath() {
@@ -31,6 +33,9 @@ addToPath() {
 		export PATH=$PATH:$dir
 	fi
 }
+
+# clean PATH duplicates
+cleanPath
 
 # If not running interactively, stop here
 case $- in
@@ -117,24 +122,3 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# ALIASES #
-ALIAS_FILES=(".aliases_git" ".aliases_pkgmgr")
-
-for file in ${ALIAS_FILES[@]}
-do
-	if [ -f $HOMEFILES/$file ]; then
-    		. $HOMEFILES/$file
-    		source $HOMEFILES/$file
-	fi
-done
-
-# other
-alias v='nvim'
-alias tar='tar -xvf'
-
-# AUTOMATIC CHANGES #
-# changes made automatically by packages/programs
-. "$HOME/.cargo/env"
-addToPath '/usr/local/go/bin'
-addToPath '/snap/bin'
-addToPath '/home/a/go/bin'
