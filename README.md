@@ -4,6 +4,9 @@ This README.md is under development (and will probably continue being under deve
 
 ## Setting up a new environment
 
+> [!TIP]
+> For Windows setups, see [Windows](#windows)
+
 1. Symlink your bashrc to whichever `.bashrc_os@id` you want to use. Example
 
 ```bash
@@ -12,7 +15,17 @@ ln -s .dotfiles/home/.bashrc_mac@home $HOME/.bashrc
 
 2. Run the script under `.dotfiles/scripts/setup.sh`
 
-BEWARE: This is an interactive and it will output commands for you to run manually.
+> [!WARNING]
+> This is an interactive and it will output commands for you to run manually.
+
+### Windows
+
+
+> [!WARNING]
+> The Windows set up is not integrated with other \*nix setups
+
+1. Run `scripts/utils/setup-win.ps1`
+2. Follow instructions at the end of script run
 
 ### `nvim`
 
