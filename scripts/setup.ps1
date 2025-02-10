@@ -14,9 +14,9 @@ komorebic start --whkd --bar
 
 # Symlink komorebi/whkd config
 $files = @{
-    "komorebi.json"     = "..\..\.config\komorebi\komorebi.json"
-    "komorebi.bar.json" = "..\..\.config\komorebi\komorebi.bar.json"
-    "whkdrc"            = "..\..\.config\whkd\whkdrc"
+    "komorebi.json"     = "..\.config\komorebi\komorebi.json"
+    "komorebi.bar.json" = "..\.config\komorebi\komorebi.bar.json"
+    "whkdrc"            = "..\.config\whkd\whkdrc"
 }
 $homeConfigDir = Join-Path $HOME ".config"
 if (!(Test-Path $homeConfigDir)) {

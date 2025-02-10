@@ -25,7 +25,7 @@ source $HOME/.bashrc
 > [!WARNING]
 > The Windows set up is not integrated with other \*nix setups
 
-1. Run `scripts/utils/setup-win.ps1`
+1. Run `scripts/setup.ps1`
 2. Follow instructions at the end of script run
 
 ### `nvim`
