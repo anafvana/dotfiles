@@ -1,6 +1,6 @@
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
-from subprocess import run
 from textwrap import dedent
 from time import sleep
 from typing import Literal
@@ -117,7 +117,7 @@ packages: list[Package] = [
         brew=DistroPackage(brew_cask=True),
         apt=DistroPackage(
             replace_pkgmgr_command="""
-                    sudo apt install curl libcanberra-gtk-module software-properties-common apt-transport-https
+                    sudo apt install curl libcanberra-gtk-module software-properties-common apt-transport-https -y
                     curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/spotify.gpg > /dev/null
                     echo "deb [signed-by=/usr/share/keyrings/spotify.gpg] http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
                     sudo apt update
@@ -208,7 +208,7 @@ def generate_install_script(
                 """
             output += f"""
                 sudo apt update
-                sudo apt install {" ".join(standard_install)}
+                sudo apt install {" ".join(standard_install)} -y
             """
         case "dnf":
             for r in repository_add:
@@ -217,7 +217,7 @@ def generate_install_script(
                 """
             output += f"""
                 sudo dnf update
-                sudo dnf install {" ".join(standard_install)}
+                sudo dnf install {" ".join(standard_install)} -y
             """
         case "brew":
             output += f"""
@@ -350,9 +350,16 @@ if __name__ == "__main__":
     sleep(0.5)
     print("")
 
-    result = run(["bash", output_path], capture_output=True, text=True)
+    result = subprocess.run(["bash", output_path], capture_output=True, text=True)
 
     print("\n------------------\n\n", result.stdout)
     print("" if result.stderr else "\n------------------\n", result.stderr)
+
+    # Supposedly interactive version
+    # proc = subprocess.Popen(output_path, stdout=subprocess.PIPE, bufsize=1)
+    # for line in iter(proc.stdout.readline, b""):
+    #     print(line)
+    # proc.stdout.close()
+    # proc.wait()
 
     output_path.unlink()
