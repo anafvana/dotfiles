@@ -32,6 +32,7 @@ class Package:
 
 packages: list[Package] = [
     Package(name="neovim", config="nvim"),
+    Package(name="efm-langserver", what_is="EFM Language server (USED WITH NEOVIM)"),
     Package(name="bspwm", brew=False, config="bspwm"),
     Package(name="sxhkd", brew=False, config="sxhkd"),
     Package(name="yabai", apt=False, dnf=False, config="yabai"),
