@@ -264,7 +264,7 @@ def symlink_configs(
     for pkg in selected_packages:
         if pkg.config:
             output += f"""
-                ln -s {src_config}/{pkg.config} {dest_config}/{pkg.config}
+                ln -sT {src_config}/{pkg.config} {dest_config}/{pkg.config}
             """
 
     return dedent(output)
@@ -349,6 +349,7 @@ if __name__ == "__main__":
     print("Just wait...")
     sleep(0.5)
     print("")
+
     result = run(["bash", output_path], capture_output=True, text=True)
 
     print("\n------------------\n\n", result.stdout)
