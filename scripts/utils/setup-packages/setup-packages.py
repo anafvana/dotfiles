@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from subprocess import run
 from textwrap import dedent
 from time import sleep
 from typing import Literal
@@ -341,4 +342,16 @@ if __name__ == "__main__":
     with open(output_path, "w") as f:
         f.write(script)
 
-    print(output_path)
+    print("Your terminal will be blank momentarily.")
+    sleep(0.5)
+    print("This is normal")
+    sleep(0.5)
+    print("Just wait...")
+    sleep(0.5)
+    print("")
+    result = run(["bash", output_path], capture_output=True, text=True)
+
+    print("\n------------------\n\n", result.stdout)
+    print("" if result.stderr else "\n------------------\n", result.stderr)
+
+    output_path.unlink()

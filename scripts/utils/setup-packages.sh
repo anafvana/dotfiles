@@ -35,13 +35,6 @@ case "$os" in
 		;;
 esac
 
-echo `which python`
-cd "$UTILS/setup-packages"
-unalias venv
-if [ ! -d "$(pwd)/venv" ]; then python3 -m venv "$(pwd)/venv"; fi; source "$(pwd)/venv/bin/activate"
-python -m pip install -r requirements.txt
-chmod +x setup-packages.py
-tmpScript=$(python "./setup-packages.py" "$pkg")
-cd "$SCRIPTS"
-chmod +x tmpScript
-echo "In bash $tmpScript"
+echo "YOU MUST RUN THE FOLLOWING COMMAND TO CONTINUE WITH THE INSTALLATION:"
+sleep 1
+echo "cd \"$UTILS/setup-packages\"; if [ ! -d "$(pwd)/venv" ]; then python3 -m venv "$(pwd)/venv"; fi; source "$(pwd)/venv/bin/activate"; python -m pip install -r requirements.txt; python ./setup-packages.py $pkg; deactivate; cd - >> /dev/null"
