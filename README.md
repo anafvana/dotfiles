@@ -11,6 +11,7 @@ This README.md is under development (and will probably continue being under deve
 
 ```bash
 ln -s .dotfiles/home/.bashrc_mac@home $HOME/.bashrc
+source $HOME/.bashrc
 ```
 
 2. Run the script under `.dotfiles/scripts/setup.sh`
