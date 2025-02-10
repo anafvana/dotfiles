@@ -206,6 +206,7 @@ def generate_install_script(
                 sudo add-apt-repository {r}
                 """
             output += f"""
+                sudo apt update
                 sudo apt install {" ".join(standard_install)}
             """
         case "dnf":
@@ -214,6 +215,7 @@ def generate_install_script(
                 sudo dnf config-manager --add-repo {r}
                 """
             output += f"""
+                sudo dnf update
                 sudo dnf install {" ".join(standard_install)}
             """
         case "brew":
