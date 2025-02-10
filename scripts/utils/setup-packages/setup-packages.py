@@ -99,11 +99,11 @@ packages: list[Package] = [
         brew=DistroPackage(brew_cask=True),
         apt=DistroPackage(
             replace_pkgmgr_command="""
-                    sudo apt install software-properties-common apt-transport-https curl -y
+                    sudo apt-get install software-properties-common apt-transport-https curl -y
                     curl -fSsL https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg
                     echo deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main | sudo tee /etc/apt/sources.list.d/signal-messenger.list
-                    sudo apt update
-                    sudo apt install signal-desktop -y
+                    sudo apt-get update
+                    sudo apt-get install signal-desktop -y
                 """
         ),
         dnf=DistroPackage(
@@ -117,11 +117,11 @@ packages: list[Package] = [
         brew=DistroPackage(brew_cask=True),
         apt=DistroPackage(
             replace_pkgmgr_command="""
-                    sudo apt install curl libcanberra-gtk-module software-properties-common apt-transport-https -y
+                    sudo apt-get install curl libcanberra-gtk-module software-properties-common apt-transport-https -y
                     curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/spotify.gpg > /dev/null
                     echo "deb [signed-by=/usr/share/keyrings/spotify.gpg] http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-                    sudo apt update
-                    sudo apt install spotify-client -y
+                    sudo apt-get update
+                    sudo apt-get install spotify-client -y
                 """
         ),
         dnf=DistroPackage(
@@ -141,7 +141,7 @@ def select_packages(packages: list[Package], pkg_manager: str) -> list[Package]:
     available_packages = [p for p in packages if getattr(p, pkg_manager) != False]
     # Format option names
     options = [
-        f"{p.name 
+        f"{p.name
             if not getattr(p, pkg_manager) or not getattr(p, pkg_manager).name
             else getattr(p, pkg_manager).name
         }{"" if not p.what_is else f" - {p.what_is}"}"
@@ -207,8 +207,8 @@ def generate_install_script(
                 sudo add-apt-repository {r}
                 """
             output += f"""
-                sudo apt update
-                sudo apt install {" ".join(standard_install)} -y
+                sudo apt-get update
+                sudo apt-get install {" ".join(standard_install)} -y
             """
         case "dnf":
             for r in repository_add:
