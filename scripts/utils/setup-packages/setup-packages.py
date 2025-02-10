@@ -13,7 +13,9 @@ available_pkgmgrs = ["brew", "apt", "dnf"]
 @dataclass
 class DistroPackage:
     name: str | None = None
-    repository: str | None = None
+    repository: str | None = (
+        None  # Expects ALL prefixes and postfixes (e.g.: ppa, https, /formulae, etc)
+    )
     brew_cask: bool = False
     replace_pkgmgr_command: str | None = None
 
@@ -35,8 +37,27 @@ packages: list[Package] = [
     Package(name="efm-langserver", what_is="EFM Language server (USED WITH NEOVIM)"),
     Package(name="bspwm", brew=False, config="bspwm"),
     Package(name="sxhkd", brew=False, config="sxhkd"),
-    Package(name="yabai", apt=False, dnf=False, config="yabai"),
-    Package(name="skhd", apt=False, dnf=False, config="skhd"),
+    Package(
+        name="yabai",
+        brew=DistroPackage(repository="FelixKratz/formulae"),
+        apt=False,
+        dnf=False,
+        config="yabai",
+    ),
+    Package(
+        name="borders",
+        brew=DistroPackage(repository="FelixKratz/formulae"),
+        apt=False,
+        dnf=False,
+        config="yabai",
+    ),
+    Package(
+        name="skhd",
+        brew=DistroPackage(repository="FelixKratz/formulae"),
+        apt=False,
+        dnf=False,
+        config="skhd",
+    ),
     Package(
         name="brightnessctl",
         brew=False,
@@ -143,6 +164,7 @@ def generate_install_script(
     cask_install: list[str] = []
     replace_install: list[str] = []
     post_install: list[str] = []
+    repository_add: set[str] = set()
     lookup_fail: list[str] = []
 
     for pkg in selected_packages:
@@ -155,6 +177,10 @@ def generate_install_script(
         if pkg_manager_settings and pkg_manager_settings.replace_pkgmgr_command:
             replace_install.append(pkg_manager_settings.replace_pkgmgr_command)
             continue
+
+        # Handle taps/repositories
+        if pkg_manager_settings and pkg_manager_settings.repository:
+            repository_add.add(pkg_manager_settings.repository)
 
         # Fetch name per package manager
         pkgname = (
@@ -175,15 +201,24 @@ def generate_install_script(
 
     match pkg_manager:
         case "apt":
+            for r in repository_add:
+                output += f"""
+                sudo add-apt-repository {r}
+                """
             output += f"""
                 sudo apt install {" ".join(standard_install)}
             """
         case "dnf":
+            for r in repository_add:
+                output += f"""
+                sudo dnf config-manager --add-repo {r}
+                """
             output += f"""
                 sudo dnf install {" ".join(standard_install)}
             """
         case "brew":
             output += f"""
+                brew tap {" ".join(repository_add)}
                 brew install {" ".join(standard_install)}
             """
         case _:
