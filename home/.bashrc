@@ -42,6 +42,17 @@ function ghana(){
 	echo "SSH key is anafvana"
 }
 
+# COMPRESS VIDEO #
+function compressVideo(){
+    if [[ -z "$1" || ! -e "$1" ]]; then
+        echo "Error: Must pass in valid file name"
+        return 1
+    fi
+    videoTitle="${1%.*}-compressed"
+
+	ffmpeg -i "$1" -vcodec libx265 -vf "scale=1080:-1" -crf 28 "$videoTitle".mp4
+}
+
 # OTHER ALIASES #
 alias psql='psql -h localhost -d postgres -U postgres -W'
 alias sme='ssh -AX -p 7226 88.87.45.118'
