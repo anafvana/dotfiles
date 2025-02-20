@@ -76,7 +76,7 @@ function gcdate(){
 	then
 		echo "Expecting date format: $(date +"%a %b %-d %T %Y")"
 		echo -n "Date: "
-		read -r input
+		read -r date
 	else
 		date=$@
 		echo "$date"
