@@ -54,7 +54,7 @@ packages: list[Package] = [
     ),
     Package(
         name="skhd",
-        brew=DistroPackage(repository="FelixKratz/formulae"),
+        brew=DistroPackage(name="koekeishiya/formulae/skhd"),
         apt=False,
         dnf=False,
         config="skhd",
