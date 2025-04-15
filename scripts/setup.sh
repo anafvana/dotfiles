@@ -121,21 +121,24 @@ allowChangeStructure() {
 # allowChangeStructure
 
 # SYMLINK BASHRC
-echo "Symlinking .bashrc"
-sleep 1
-echo "AVAILABLE FILES"
-ls -la "$HOMEFILES"
-
-read -r -p "Which .bashrc should be symlinked? " answer
-
-if [ ! -f "$HOMEFILES/$answer" ]; then
-	echo "File $HOMEFILES/$answer does not exist."
+symlink_bashrc(){
+	echo "Symlinking .bashrc"
 	sleep 1
-	echo "Aborting..."
-	sleep 1
-	exit 1
-fi
-rm "$HOME/.bashrc" &> /dev/null; ln -s "$HOMEFILES/$answer" "$HOME/.bashrc"
+	echo "AVAILABLE FILES"
+	ls -la "$HOMEFILES"
+
+	read -r -p "Which .bashrc should be symlinked? " answer
+
+	if [ ! -f "$HOMEFILES/$answer" ]; then
+		echo "File $HOMEFILES/$answer does not exist."
+		sleep 1
+		echo "Aborting..."
+		sleep 1
+		exit 1
+	fi
+	rm "$HOME/.bashrc" &> /dev/null; ln -s "$HOMEFILES/$answer" "$HOME/.bashrc"
+}
+symlink_bashrc
 
 # INSTALL SOFTWARE #
 UTILS="$SCRIPTS/utils"
