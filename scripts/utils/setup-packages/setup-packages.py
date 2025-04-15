@@ -141,10 +141,7 @@ def select_packages(packages: list[Package], pkg_manager: str) -> list[Package]:
     available_packages = [p for p in packages if getattr(p, pkg_manager) != False]
     # Format option names
     options = [
-        f"{p.name
-            if not getattr(p, pkg_manager) or not getattr(p, pkg_manager).name
-            else getattr(p, pkg_manager).name
-        }{"" if not p.what_is else f" - {p.what_is}"}"
+        f"{p.name if not getattr(p, pkg_manager) or not getattr(p, pkg_manager).name else getattr(p, pkg_manager).name}{"" if not p.what_is else f" - {p.what_is}"}"
         for p in available_packages
     ]
     selected = pick(options, title, multiselect=True)
