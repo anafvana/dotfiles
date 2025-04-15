@@ -40,7 +40,7 @@ packages: list[Package] = [
     Package(name="sxhkd", brew=False, config="sxhkd"),
     Package(
         name="yabai",
-        brew=DistroPackage(repository="FelixKratz/formulae"),
+        brew=DistroPackage(name="koekeishiya/formulae/yabai"),
         apt=False,
         dnf=False,
         config="yabai",
