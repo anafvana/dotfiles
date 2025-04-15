@@ -163,6 +163,7 @@ case "$os" in
 	Darwin)
 		rm "$HOME/.zshrc" &> /dev/null; ln -s "$HOME/.bashrc" "$HOME/.zshrc"
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		source ~/.zshrc
 		brew install python
 		python3 -m pip install virtualenv
 		pkg="brew"
