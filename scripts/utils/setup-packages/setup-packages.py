@@ -264,7 +264,7 @@ def symlink_configs(
     for pkg in selected_packages:
         if pkg.config:
             output += f"""
-                ln -sT {src_config}/{pkg.config} {dest_config}/{pkg.config}
+                rm -f {dest_config}/{pkg.config} && ln -s {src_config}/{pkg.config} {dest_config}/{pkg.config}
             """
 
     return dedent(output)
