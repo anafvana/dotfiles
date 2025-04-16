@@ -168,7 +168,7 @@ case "$os" in
 		rm "$HOME/.bash_profile" &> /dev/null; ln -s "$HOME/.bashrc" "$HOME/.bash_profile"
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		source ~/.zshrc
-		brew install python
+		brew install python go
 		python3 -m pip install virtualenv
 		pkg="brew"
 		;;
