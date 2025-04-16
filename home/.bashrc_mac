@@ -17,10 +17,7 @@ export GPG_TTY=$(tty)
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-#setopt checkwinsize
-
-# autocd
-setopt autocd
+# setopt checkwinsize
 
 yabaiRestart () {
 	echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
