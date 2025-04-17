@@ -138,7 +138,7 @@ def select_packages(packages: list[Package], pkg_manager: str) -> list[Package]:
     title = "Choose packages to install. Toggle with [space]. Confirm selection with [enter]."
 
     # Filter ONLY packages with the pkg_manager option
-    available_packages = [p for p in packages if getattr(p, pkg_manager) != False]
+    available_packages = [p for p in packages if getattr(p, pkg_manager) is not False]
     # Format option names
     options = [
         f"{p.name if not getattr(p, pkg_manager) or not getattr(p, pkg_manager).name else getattr(p, pkg_manager).name}{"" if not p.what_is else f" - {p.what_is}"}"
@@ -317,7 +317,7 @@ if __name__ == "__main__":
     if not Path.exists(user_config_path):
         raise Exception(f"User .config folder not found under {user_config_path}")
 
-    if not pkg_manager in available_pkgmgrs:
+    if pkg_manager not in available_pkgmgrs:
         print(f"ERROR: Package manager '{pkg_manager}' not supported.")
         exit(1)
 
