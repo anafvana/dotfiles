@@ -125,11 +125,17 @@ symlink_bashrc(){
 	echo "Symlinking .bashrc"
 	sleep 1
 	echo "AVAILABLE FILES"
-	ls -la "$HOMEFILES"
+	ls -1A "$HOMEFILES"
+	echo "or [S]kip"
 
 	read -r -p "Which .bashrc should be symlinked? " answer
 
-	if [ ! -f "$HOMEFILES/$answer" ]; then
+	if [[ $(echo "$answer" | awk '{print tolower($0)}') == "s" || $(echo "$answer" | awk '{print tolower($0)}') == "skip" ]]
+	then
+		echo "Skipping..."
+		sleep 1
+		return
+	elif [ ! -f "$HOMEFILES/$answer" ]; then
 		echo "File $HOMEFILES/$answer does not exist."
 		sleep 1
 		echo "Aborting..."
@@ -137,6 +143,9 @@ symlink_bashrc(){
 		exit 1
 	fi
 	rm "$HOME/.bashrc" &> /dev/null; ln -s "$HOMEFILES/$answer" "$HOME/.bashrc"
+	sleep 1
+	echo "Symlinked"
+	sleep 1
 }
 symlink_bashrc
 
