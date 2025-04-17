@@ -24,7 +24,8 @@ yabaiRestart () {
 	yabai --restart-service
 }
 
-addToPath '/opt/homebrew/bin'
+
+export PATH="/opt/homebrew/bin:$PATH" # Must be prepended to PATH (addToPath appends)
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
 addToPath '/opt/homebrew/anaconda3/bin'
 addToPath '/opt/homebrew/opt/node@18/bin'
