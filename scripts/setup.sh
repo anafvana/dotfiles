@@ -164,12 +164,7 @@ setup_linux() {
 
 case "$os" in
 	Darwin)
-		rm "$HOME/.zshrc" &> /dev/null; ln -s "$HOME/.bashrc" "$HOME/.zshrc"
-		rm "$HOME/.bash_profile" &> /dev/null; ln -s "$HOME/.bashrc" "$HOME/.bash_profile"
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		source ~/.zshrc
-		brew install python go
-		python3 -m pip install virtualenv
+		bash "$UTILS/setup-mac.sh"
 		pkg="brew"
 		;;
 	Linux)
