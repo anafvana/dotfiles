@@ -146,6 +146,10 @@ symlink_bashrc(){
 	sleep 1
 	echo "Symlinked"
 	sleep 1
+
+	echo "Symlinking .bash_profile"
+	rm "$HOME/.bash_profile" &> /dev/null; ln -s "$HOMEFILES/.bash_profile" "$HOME/.bash_profile"
+	sleep 1
 }
 symlink_bashrc
 

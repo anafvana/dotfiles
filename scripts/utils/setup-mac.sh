@@ -1,10 +1,8 @@
 echo "STARTING setup-mac.sh"
 
 # Symlink bashrc
-echo "Symlinking .zshrc and .bash_profile"
+echo "Symlinking .zshrc"
 rm "$HOME/.zshrc" &> /dev/null; ln -s "$HOME/.bashrc" "$HOME/.zshrc"
-rm "$HOME/.bash_profile" &> /dev/null; ln -s "$HOME/.bashrc" "$HOME/.bash_profile"
-
 
 # Install newest bash
 echo "Installing newest bash"
