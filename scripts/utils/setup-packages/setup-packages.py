@@ -131,6 +131,13 @@ packages: list[Package] = [
                 """
         ),
     ),
+    Package(
+        name="google-drive", brew=DistroPackage(brew_cask=True), apt=False, dnf=False
+    ),
+    Package(
+        name="google-chrome", brew=DistroPackage(brew_cask=True), apt=False, dnf=False
+    ),
+    Package(name="obsidian", brew=DistroPackage(brew_cask=True), apt=False, dnf=False),
 ]
 
 
