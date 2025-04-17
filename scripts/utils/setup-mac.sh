@@ -37,8 +37,7 @@ source ~/.zshrc
 
 # Install base tools for interactive setup
 echo "Installing required packages"
-brew install python go
-python3 -m pip install virtualenv
+brew install python mypy virtualenv go
 brew update
 
 echo "COMPLETED setup-mac.sh"
