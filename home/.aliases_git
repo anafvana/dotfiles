@@ -7,24 +7,24 @@ function gcm(){
 	git commit -m "$*"
 }
 
-function gcnew(){
-	gcm "📦 NEW: $@"
+function gcftr(){
+	gcm "📦 feat: $@"
 }
 
-function gcupg(){
-	gcm "🆙 UPGRADE: $@"
+function gcnew() {
+	gcftr "$@"
 }
 
 function gcimp() {
-	gcm "👌 IMPROVE: $@"
+	gcm "👌 improve: $@"
 }
 
 function gcmin(){
-	gcm "🤏 MINOR: $@"
+	gcm "🤏 minor: $@"
 }
 
 function gcprp(){
-	gcm "🚧 PREPARATION: $@"
+	gcm "🚧 preparation: $@"
 }
 
 function gcpre(){
@@ -32,11 +32,11 @@ function gcpre(){
 }
 
 function gcref(){
-	gcm "🔨 REFACTOR: $@"
+	gcm "🔨 refactor: $@"
 }
 
 function gcfix() {
-	gcm "🐛 FIX: $@"
+	gcm "🐛 fix: $@"
 }
 
 function gcbug() {
@@ -44,31 +44,31 @@ function gcbug() {
 }
 
 function gcrel() {
-	gcm "🚀 RELEASE: $@"
+	gcm "🚀 release: $@"
 }
 
 function gcdoc() {
-	gcm "📖 DOC: $@"
+	gcm "📖 docs: $@"
 }
 
 function gcfmt() {
-	gcm "💄 FORMAT: $@"
+	gcm "💄 format: $@"
 }
 
 function gctst() {
-	gcm "✅ TEST: $@"
+	gcm "✅ test: $@"
 }
 
 function gcmrg() {
-	gcm "🔀 MERGE: $@"
+	gcm "🔀 merge: $@"
 }
 
 function gcrmv() {
-	gcm "❌ REMOVE: $@"
+	gcm "❌ remove: $@"
 }
 
 function gccln(){
-	gcm "🧹 CLEAN-UP: $@"
+	gcm "🧹 cleanup: $@"
 }
 
 function gcdate(){
@@ -181,22 +181,22 @@ function ghelp(){
 		gnb	= git checkout -b
 		grb	= git branch -d
 		grbf	= git branch -D (force delete)
-		gcnew	= 📦 NEW
-		gcupg	= 🆙 UPGRADE
-		gcimp	= 👌 IMPROVE
-		gcmin	= 🤏 MINOR
-		gcpre	= 🚧 PREPARATION
-		gcprp	= 🚧 PREPARATION
-		gcref	= 🔨 REFACTOR
-		gcfix	= 🐛 FIX
-		gcbug	= 🐛 FIX
-		gcrel	= 🚀 RELEASE
-		gcdoc	= 📖 DOC
-		gcfmt	= 💄 FORMAT
-		gctst	= ✅ TEST
-		gcmrg	= 🔀 MERGE
-		gcrmv	= ❌ REMOVE
-		gccln	= 🧹 CLEAN-UP
+		gcnew	= 📦 feat
+		gcftr	= 📦 feat
+		gcfix	= 🐛 fix
+		gcbug	= 🐛 fix
+		gcimp	= 👌 improve
+		gcrmv	= ❌ remove
+		gcmrg	= 🔀 merge
+		gcmin	= 🤏 minor
+		gcpre	= 🚧 preparation
+		gcprp	= 🚧 preparation
+		gcfmt	= 💄 format
+		gctst	= ✅ test
+		gccln	= 🧹 cleanup
+		gcref	= 🔨 refactor
+		gcdoc	= 📖 docs
+		gcrel	= 🚀 release
 	" | column -t -s $'\t'
 }
 
