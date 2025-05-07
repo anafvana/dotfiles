@@ -24,6 +24,31 @@ yabaiRestart () {
 	yabai --restart-service
 }
 
+undamage () {
+	usage='undamage /Applications/YourApp.app'
+
+	if [ $# -ne 1 ]
+	then
+		echo "ERROR: Expected 1 argument, got $#. Usage is \"$usage\" "
+		return 1
+	fi
+
+	if [[ "$1" == '-h' ]]
+	then
+		echo "undamage: a command that attempts to fix \"App Is Damaged and Cannot Be Opened on Mac\" errors by removing the quarantine flag from the app."
+		echo "usage: \"$usage\""
+		echo ""
+		echo "USE WITH CAUTION - only for trusted apps"
+		echo "You can clear ALL flags with \"xattr -cr /Application/YourApp.app\"."
+		echo "undamage will not perform this action automatically."
+		return 0
+	fi
+
+	echo "Running undamage on $1"
+	xattr -r -d com.apple.quarantine "$1"
+
+}
+
 
 export PATH="/opt/homebrew/bin:$PATH" # Must be prepended to PATH (addToPath appends)
 addToPath '/opt/homebrew/opt/arm-none-eabi-gcc@8/bin'
